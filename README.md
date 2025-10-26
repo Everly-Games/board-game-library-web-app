@@ -1,4 +1,4 @@
-# board-game-library-web-app
+# Board Game Library
 
 The web app at boardgamelibrary.com
 
@@ -22,6 +22,7 @@ npx sv create my-app
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
 ```sh
+nvm use 20
 npm run dev
 
 # or start the server and open the app in a new browser tab
