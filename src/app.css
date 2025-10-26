@@ -1,3 +1,17 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+@theme {
+  /* Existing color */
+  --color-dusty-hallway-dark: #A8A397;
+  --color-blackcurrant: #261E23;
+
+  /* New gradient color for nav background */
+  --color-navbar-light: linear-gradient(
+    to right,
+    #E8E6DD 0%,
+    #F6F5F1 50%,
+    #E8E6DD 100%
+  );
+}
