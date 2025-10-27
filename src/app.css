@@ -2,16 +2,74 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
+/* ── Reddit Sans (self-hosted) ───────────────────────────── */
+@font-face {
+  font-family: "Reddit Sans";
+  src:
+    url("/fonts/RedditSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Reddit Sans";
+  src:
+    url("/fonts/RedditSans-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Reddit Sans";
+  src:
+    url("/fonts/RedditSans-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Make Reddit Sans the global font */
+@layer base {
+  html, body {
+    font-family: "Reddit Sans", system-ui, -apple-system, "Segoe UI",
+                 Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  }
+  /* ensure form controls inherit */
+  button, input, select, textarea {
+    font: inherit;
+  }
+}
+
+/* 1) Design tokens go in @theme */
 @theme {
-  /* Existing color */
   --color-dusty-hallway-dark: #A8A397;
   --color-blackcurrant: #261E23;
+  --color-reading-chair-brown: #664718;
+  --color-tabby: #E09F3E;
+  --color-wine-purple: #670034;
+  --color-fancy-blue-dark: #335C67;
+  --color-librarian-lipstick-red: #95290C;
 
-  /* New gradient color for nav background */
+  /* gradient token for navbar background → class: bg-navbar-light */
   --color-navbar-light: linear-gradient(
     to right,
     #E8E6DD 0%,
     #F6F5F1 50%,
     #E8E6DD 100%
   );
+}
+
+/* 2) Component/class styles go outside @theme */
+@layer components {
+  .top-border {
+    height: 10px;
+    background: linear-gradient(
+      to right,
+      var(--color-reading-chair-brown) 0% 20%,
+      var(--color-tabby)              20% 40%,
+      var(--color-wine-purple)        40% 60%,
+      var(--color-fancy-blue-dark)    60% 80%,
+      var(--color-librarian-lipstick-red) 80% 100%
+    );
+  }
 }

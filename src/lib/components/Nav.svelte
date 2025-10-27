@@ -15,13 +15,22 @@
 </script>
 
 <header
-  class="sticky top-0 z-50 text-blackcurrant"
-  style="background: var(--color-navbar-light); height: 80px;"
+  class="sticky top-0 z-50 relative text-blackcurrant h-[86px] not-prose"
+  style="background: var(--color-navbar-light);"
 >
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="flex h-[80px] items-center justify-between">
+  <!-- multicolor strip across the top -->
+  <div class="absolute top-0 left-0 w-full h-[10px] top-border"></div>
+
+  <!-- add top padding equal to the bar height -->
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-[10px] h-full">
+    <!-- the flex area now fills the remaining 76px -->
+    <div class="flex h-[76px] items-center justify-between">
       <!-- Brand -->
-      <a href="/" class="flex items-center gap-2 font-semibold hover:opacity-80">
+      <a
+        href="/"
+        class="flex items-center gap-2 font-semibold text-blackcurrant hover:text-blackcurrant/80 transition-colors"
+        aria-label="Board Game Library — Home"
+      >
         <span>Board Game Library</span>
       </a>
 
@@ -30,10 +39,10 @@
         {#each links as link}
           <a
             href={link.href}
-            class="text-sm font-medium transition-colors hover:opacity-70
+            class="text-sm font-medium text-blackcurrant hover:text-blackcurrant/80 transition-colors
                    {isActive(link.href, $page.url.pathname)
-                     ? 'font-semibold opacity-100'
-                     : 'opacity-80'}"
+                     ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
+                     : ''} visited:text-blackcurrant"
             aria-current={isActive(link.href, $page.url.pathname) ? 'page' : undefined}
           >
             {link.label}
@@ -55,15 +64,15 @@
 
   <!-- Mobile drawer -->
   {#if open}
-    <div class="md:hidden" style="background: var(--color-navbar-light);">
+    <div style="background: var(--color-navbar-light);">
       <div class="mx-auto max-w-7xl px-4 py-3 flex flex-col gap-3">
         {#each links as link}
           <a
             href={link.href}
-            class="py-2 text-base transition-colors
+            class="py-2 text-base text-blackcurrant hover:text-blackcurrant/80 transition-colors
                    {isActive(link.href, $page.url.pathname)
-                     ? 'font-semibold text-blackcurrant'
-                     : 'text-blackcurrant/80 hover:text-blackcurrant'}"
+                     ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
+                     : ''} visited:text-blackcurrant"
             on:click={() => (open = false)}
             aria-current={isActive(link.href, $page.url.pathname) ? 'page' : undefined}
           >
