@@ -112,7 +112,7 @@
       <!-- Right: Search + Profile (always visible) -->
       <div class="flex items-center gap-5 h-[40px] max-[1030px]:h-[36px] max-[1030px]:gap-3 transition-all duration-300">
         <!-- Search -->
-        <div class="relative flex items-center h-[40px] w-[220px] max-[1030px]:h-[36px] max-[1030px]:w-[160px] transition-all duration-300">
+        <div class="relative flex items-center h-[40px] w-[280px] max-[1030px]:h-[30px] max-[1030px]:w-[220px] transition-all duration-300">
           <img src="/images/search.svg" alt="Search" class="absolute left-3 h-4 w-4 pointer-events-none opacity-70 max-[1030px]:h-3.5 max-[1030px]:w-3.5" />
           <input
             type="text"
