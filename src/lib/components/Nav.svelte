@@ -23,20 +23,20 @@
 
 <header
   class="sticky top-0 z-50 relative text-blackcurrant not-prose transition-all duration-300
-         h-[86px] max-[1030px]:h-[55px]"
+         h-[86px] max-[930px]:h-[55px]"
   style="background: var(--color-navbar-light);"
 >
   <!-- Multicolor top border (10px → 6px with animation) -->
-  <div class="absolute top-0 left-0 w-full h-[10px] top-border transition-all duration-300 max-[1030px]:h-[6px]"></div>
+  <div class="absolute top-0 left-0 w-full h-[10px] top-border transition-all duration-300 max-[930px]:h-[6px]"></div>
 
   <!-- Inner container (padding shrinks with bar) -->
   <div
     class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-full
-           pt-[10px] max-[1030px]:pt-[5px]
+           pt-[10px] max-[930px]:pt-[5px]
            transition-all duration-300"
   >
     <div
-      class="flex items-center justify-between gap-4 h-[76px] max-[1030px]:h-[50px]
+      class="flex items-center justify-between gap-4 h-[76px] max-[930px]:h-[50px]
              transition-all duration-300"
     >
       <!-- Left: logo + links -->
@@ -44,19 +44,19 @@
         <!-- Brand -->
         <a
           href="/"
-          class="flex items-center gap-2 font-semibold text-xl max-[1030px]:text-lg
+          class="flex items-center gap-2 font-semibold text-xl max-[930px]:text-lg
                  text-blackcurrant hover:text-blackcurrant transition-colors
                  transition-all duration-300"
         >
           <img
             src="/logo.svg"
             alt="Board Game Library Logo"
-            class="h-10 max-[1030px]:h-8 w-auto -translate-y-[3px] transition-all duration-300"
+            class="h-10 max-[930px]:h-8 w-auto -translate-y-[3px] transition-all duration-300"
           />
         </a>
 
         <!-- Desktop navigation (progressively hides) -->
-        <nav class="flex items-center gap-8 max-[1030px]:gap-6 text-lg max-[1030px]:text-base font-medium pt-[2px] transition-all duration-300">
+        <nav class="flex items-center gap-8 max-[930px]:gap-6 text-lg max-[930px]:text-base font-medium pt-[2px] transition-all duration-300">
           <a
             href="/"
             class="relative pb-[2px] text-blackcurrant font-medium text-lg transition-colors border-b-4
@@ -64,7 +64,7 @@
                    {isActive('/', $page.url.pathname)
                      ? 'font-semibold border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
-                   max-[660px]:hidden max-[1030px]:text-base"
+                   max-[600px]:hidden max-[700px]:text-base"
           >Top Games</a>
 
           <a
@@ -74,7 +74,7 @@
                    {isActive('/trending', $page.url.pathname)
                      ? 'font-semibold border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
-                   max-[780px]:hidden max-[1030px]:text-base"
+                   max-[700px]:hidden max-[900px]:text-base"
           >Trending Games</a>
 
           <a
@@ -84,7 +84,7 @@
                    {isActive('/news', $page.url.pathname)
                      ? 'font-semibold border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
-                   max-[900px]:hidden max-[1030px]:text-base"
+                   max-[900px]:hidden max-[900px]:text-base"
           >News</a>
 
           <a
@@ -94,7 +94,7 @@
                    {isActive('/scoreboard', $page.url.pathname)
                      ? 'font-semibold border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
-                   max-[1030px]:hidden max-[1030px]:text-base"
+                   max-[1050px]:hidden max-[1050px]:text-base"
           >Scoreboard</a>
 
           <a
@@ -104,34 +104,34 @@
                    {isActive('/library', $page.url.pathname)
                      ? 'font-semibold border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
-                   max-[1030px]:hidden max-[1030px]:text-base"
+                   max-[1100px]:hidden max-[1100px]:text-base"
           >My Library</a>
         </nav>
       </div>
 
       <!-- Right: Search + Profile (always visible) -->
-      <div class="flex items-center gap-5 h-[40px] max-[1030px]:h-[36px] max-[1030px]:gap-3 transition-all duration-300">
+      <div class="flex items-center gap-5 h-[40px] max-[930px]:h-[36px] max-[930px]:gap-3 transition-all duration-300">
         <!-- Search -->
-        <div class="relative flex items-center h-[40px] w-[280px] max-[1030px]:h-[30px] max-[1030px]:w-[220px] transition-all duration-300">
-          <img src="/images/search.svg" alt="Search" class="absolute left-3 h-4 w-4 pointer-events-none opacity-70 max-[1030px]:h-3.5 max-[1030px]:w-3.5" />
+        <div class="relative flex items-center h-[40px] w-[280px] max-[930px]:h-[30px] max-[930px]:w-[220px] transition-all duration-300">
+          <img src="/images/search.svg" alt="Search" class="absolute left-3 h-4 w-4 pointer-events-none opacity-70 max-[930px]:h-3.5 max-[930px]:w-3.5" />
           <input
             type="text"
             bind:value={searchQuery}
             placeholder={placeholder}
             class="h-full w-full rounded-full border border-blackcurrant bg-white text-blackcurrant
-                   placeholder-blackcurrant/60 pl-9 pr-9 text-base max-[1030px]:text-sm leading-none box-border
+                   placeholder-blackcurrant/60 pl-9 pr-9 text-base max-[930px]:text-sm leading-none box-border
                    outline-none focus:outline-none focus:border-fancy-blue-dark
                    focus:ring-2 focus:ring-fancy-blue-dark/30 transition-all duration-300
-                   max-[1030px]:pl-8 max-[1030px]:pr-8"
+                   max-[930px]:pl-8 max-[930px]:pr-8"
           />
           {#if searchQuery}
             <button
               type="button"
               on:click={clearSearch}
-              class="absolute right-3 p-1 hover:scale-110 transition-transform max-[1030px]:right-2"
+              class="absolute right-3 p-1 hover:scale-110 transition-transform max-[930px]:right-2"
               aria-label="Clear search"
             >
-              <img src="/images/close.svg" alt="Clear" class="h-4 w-4 opacity-70 hover:opacity-100 max-[1030px]:h-3.5 max-[1030px]:w-3.5" />
+              <img src="/images/close.svg" alt="Clear" class="h-4 w-4 opacity-70 hover:opacity-100 max-[930px]:h-3.5 max-[930px]:w-3.5" />
             </button>
           {/if}
         </div>
@@ -139,29 +139,35 @@
         <!-- Profile -->
         <a
           href="/account"
-          class="flex items-center h-[52px] w-[52px] max-[1030px]:h-[34px] max-[1030px]:w-[34px]
+          class="flex items-center h-[55px] w-[55px] max-[930px]:h-[41px] max-[930px]:w-[41px]
                  group relative shrink-0 transition-all duration-300"
           aria-label="Account"
         >
           <div
-            class="h-full w-full bg-no-repeat bg-center bg-contain transition-transform duration-300 ease-out group-hover:scale-110 group-hover:rotate-3"
+            class="h-full w-full bg-no-repeat bg-center bg-contain focus:outline-none focus:border-fancy-blue-dark
+                   focus:ring-2 focus:ring-fancy-blue-dark/30 transition-all duration-300"
             style="background-image: url('/images/account.svg');"
           />
         </a>
 
-        <!-- Hamburger (smaller on mobile) -->
+        <!-- Hamburger (aligned with profile icon) -->
         <button
-          class="hidden max-[1030px]:inline-flex items-center justify-center 
-                 h-[28px] w-[28px] rounded-md 
-                 border border-blackcurrant text-blackcurrant text-[18px] leading-[0.9]
-                 hover:bg-blackcurrant/10 transition translate-y-[-1px]"
-          style="border-width: 1px;"
-          aria-label="Toggle menu"
-          aria-expanded={open}
-          on:click={() => (open = !open)}
+        class="hidden max-[1100px]:inline-flex items-center justify-center 
+                h-[30px] w-[30px] rounded-md 
+                border border-blackcurrant text-blackcurrant leading-[0.9]
+                hover:bg-blackcurrant/10 transition"
+        style="border-width: 1px;"
+        aria-label="Toggle menu"
+        aria-expanded={open}
+        on:click={() => (open = !open)}
         >
-          {#if open} ✕ {:else} ☰ {/if}
+        {#if open}
+            <img src="/images/close.svg" alt="Close menu" class="h-[16px] w-[16px]" />
+        {:else}
+            <img src="/images/menu.svg" alt="Open menu" class="h-[16px] w-[16px]" />
+        {/if}
         </button>
+
       </div>
     </div>
   </div>
