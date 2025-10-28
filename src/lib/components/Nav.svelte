@@ -51,7 +51,7 @@
           <img
             src="/logo.svg"
             alt="Board Game Library Logo"
-            class="h-10 max-[930px]:h-8 w-auto -translate-y-[3px] transition-all duration-300"
+            class="h-10 max-[930px]:h-10 w-auto -translate-y-[3px] transition-all duration-300"
           />
         </a>
 
