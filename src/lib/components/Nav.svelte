@@ -40,7 +40,7 @@
              transition-all duration-300"
     >
       <!-- Left: logo + links -->
-      <div class="flex items-center gap-6 sm:gap-10">
+      <div class="flex items-center gap-1 sm:gap-2 md:gap-8">
         <!-- Brand -->
         <a
           href="/"
@@ -48,10 +48,11 @@
                  text-blackcurrant hover:text-blackcurrant transition-colors
                  transition-all duration-300"
         >
-          <img
+
+        <img
             src="/logo.svg"
             alt="Board Game Library Logo"
-            class="h-10 max-[930px]:h-10 w-auto -translate-y-[3px] transition-all duration-300"
+            class="h-10 max-[930px]:h-7 w-auto -translate-y-[3px] transition-all duration-300"
           />
         </a>
 
@@ -110,10 +111,9 @@
       </div>
 
       <!-- Right: Search + Profile (always visible) -->
-      <div class="flex items-center gap-5 h-[40px] max-[930px]:h-[36px] max-[930px]:gap-3 transition-all duration-300">
+        <div class="flex items-center gap-5 h-[40px] max-[930px]:h-[36px] max-[930px]:gap-3 transition-all duration-300 max-[930px]:flex-1 max-[930px]:min-w-0">
         <!-- Search -->
-        <div class="relative flex items-center h-[40px] w-[280px] max-[930px]:h-[30px] max-[930px]:w-[220px] transition-all duration-300">
-          <img src="/images/search.svg" alt="Search" class="absolute left-3 h-4 w-4 pointer-events-none opacity-70 max-[930px]:h-3.5 max-[930px]:w-3.5" />
+        <div class="relative flex items-center h-[40px] w-[280px] transition-all duration-300 max-[930px]:h-[30px] max-[930px]:w-auto max-[930px]:flex-1 max-[930px]:min-w-0 max-[930px]:max-w-[720px]">          <img src="/images/search.svg" alt="Search" class="absolute left-3 h-4 w-4 pointer-events-none opacity-70 max-[930px]:h-3.5 max-[930px]:w-3.5" />
           <input
             type="text"
             bind:value={searchQuery}
