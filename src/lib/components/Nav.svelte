@@ -23,7 +23,7 @@
 
 <header
   class="sticky top-0 z-50 relative text-blackcurrant not-prose transition-all duration-300
-         h-[86px] max-[930px]:h-[55px]"
+         h-[86px] max-[930px]:h-[64px]"
   style="background: var(--color-navbar-light);"
 >
   <!-- Multicolor top border (10px → 6px with animation) -->
@@ -36,7 +36,7 @@
            transition-all duration-300"
   >
     <div
-      class="flex items-center justify-between gap-4 h-[76px] max-[930px]:h-[50px]
+      class="flex items-center justify-between gap-4 h-[76px] max-[930px]:h-[56px]
              transition-all duration-300"
     >
       <!-- Left: logo + links -->
@@ -48,11 +48,10 @@
                  text-blackcurrant hover:text-blackcurrant transition-colors
                  transition-all duration-300"
         >
-
-        <img
+          <img
             src="/logo.svg"
             alt="Board Game Library Logo"
-            class="h-10 max-[930px]:h-7 w-auto -translate-y-[3px] transition-all duration-300"
+            class="h-10 max-[930px]:h-9 w-auto -translate-y-[2px] transition-all duration-300"
           />
         </a>
 
@@ -111,15 +110,16 @@
       </div>
 
       <!-- Right: Search + Profile (always visible) -->
-        <div class="flex items-center gap-5 h-[40px] max-[930px]:h-[36px] max-[930px]:gap-3 transition-all duration-300 max-[930px]:flex-1 max-[930px]:min-w-0">
+      <div class="flex items-center gap-5 h-[40px] max-[930px]:h-[36px] max-[930px]:gap-3 transition-all duration-300 max-[930px]:flex-1 max-[930px]:min-w-0">
         <!-- Search -->
-        <div class="relative flex items-center h-[40px] w-[280px] transition-all duration-300 max-[930px]:h-[30px] max-[930px]:w-auto max-[930px]:flex-1 max-[930px]:min-w-0 max-[930px]:max-w-[720px]">          <img src="/images/search.svg" alt="Search" class="absolute left-3 h-4 w-4 pointer-events-none opacity-70 max-[930px]:h-3.5 max-[930px]:w-3.5" />
+        <div class="relative flex items-center h-[40px] w-[280px] transition-all duration-300 max-[930px]:h-[34px] max-[930px]:w-auto max-[930px]:flex-1 max-[930px]:min-w-0 max-[930px]:max-w-[720px]">
+          <img src="/images/search.svg" alt="Search" class="absolute left-3 h-4 w-4 pointer-events-none opacity-70 max-[930px]:h-4 max-[930px]:w-4" />
           <input
             type="text"
             bind:value={searchQuery}
             placeholder={placeholder}
             class="h-full w-full rounded-full border border-blackcurrant bg-white text-blackcurrant
-                   placeholder-blackcurrant/60 pl-9 pr-9 text-base max-[930px]:text-sm leading-none box-border
+                   placeholder-blackcurrant/60 pl-9 pr-9 text-base max-[930px]:text-[14px] leading-none box-border
                    outline-none focus:outline-none focus:border-fancy-blue-dark
                    focus:ring-2 focus:ring-fancy-blue-dark/30 transition-all duration-300
                    max-[930px]:pl-8 max-[930px]:pr-8"
@@ -131,7 +131,7 @@
               class="absolute right-3 p-1 hover:scale-110 transition-transform max-[930px]:right-2"
               aria-label="Clear search"
             >
-              <img src="/images/close.svg" alt="Clear" class="h-4 w-4 opacity-70 hover:opacity-100 max-[930px]:h-3.5 max-[930px]:w-3.5" />
+              <img src="/images/close.svg" alt="Clear" class="h-4 w-4 opacity-70 hover:opacity-100 max-[930px]:h-4 max-[930px]:w-4" />
             </button>
           {/if}
         </div>
@@ -139,7 +139,7 @@
         <!-- Profile -->
         <a
           href="/account"
-          class="flex items-center h-[55px] w-[55px] max-[930px]:h-[41px] max-[930px]:w-[41px]
+          class="flex items-center h-[55px] w-[55px] max-[930px]:h-[44px] max-[930px]:w-[44px]
                  group relative shrink-0 transition-all duration-300"
           aria-label="Account"
         >
@@ -152,20 +152,20 @@
 
         <!-- Hamburger (aligned with profile icon) -->
         <button
-        class="hidden max-[1100px]:inline-flex items-center justify-center 
-                h-[30px] w-[30px] rounded-md 
-                border border-blackcurrant text-blackcurrant leading-[0.9]
-                hover:bg-blackcurrant/10 transition"
-        style="border-width: 1px;"
-        aria-label="Toggle menu"
-        aria-expanded={open}
-        on:click={() => (open = !open)}
+          class="hidden max-[1100px]:inline-flex items-center justify-center 
+                  h-[36px] w-[36px] rounded-md 
+                  border border-blackcurrant text-blackcurrant leading-[0.9]
+                  hover:bg-blackcurrant/10 transition"
+          style="border-width: 1px;"
+          aria-label="Toggle menu"
+          aria-expanded={open}
+          on:click={() => (open = !open)}
         >
-        {#if open}
+          {#if open}
             <img src="/images/close.svg" alt="Close menu" class="h-[16px] w-[16px]" />
-        {:else}
+          {:else}
             <img src="/images/menu.svg" alt="Open menu" class="h-[16px] w-[16px]" />
-        {/if}
+          {/if}
         </button>
 
       </div>
