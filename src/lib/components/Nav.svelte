@@ -23,7 +23,7 @@
 
 <header
   class="sticky top-0 z-50 relative text-blackcurrant not-prose transition-all duration-300
-         h-[86px] max-[930px]:h-[64px]"
+         h-[86px] max-[930px]:h-[61px]"
   style="background: var(--color-navbar-light);"
 >
   <!-- Multicolor top border (10px → 6px with animation) -->
@@ -40,7 +40,7 @@
              transition-all duration-300"
     >
       <!-- Left: logo + links -->
-      <div class="flex items-center gap-1 sm:gap-2 md:gap-8">
+      <div class="flex items-center gap-0 sm:gap-6 md:gap-6">
         <!-- Brand -->
         <a
           href="/"
@@ -64,7 +64,7 @@
                    {isActive('/', $page.url.pathname)
                      ? 'font-semibold border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
-                   max-[600px]:hidden max-[700px]:text-base"
+                   max-[750px]:hidden max-[900px]:text-base"
           >Top Games</a>
 
           <a
@@ -74,7 +74,7 @@
                    {isActive('/trending', $page.url.pathname)
                      ? 'font-semibold border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
-                   max-[700px]:hidden max-[900px]:text-base"
+                   max-[750px]:hidden max-[825px]:text-base"
           >Trending Games</a>
 
           <a
@@ -84,7 +84,7 @@
                    {isActive('/news', $page.url.pathname)
                      ? 'font-semibold border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
-                   max-[900px]:hidden max-[900px]:text-base"
+                   max-[825px]:hidden max-[825px]:text-base"
           >News</a>
 
           <a
@@ -94,7 +94,7 @@
                    {isActive('/scoreboard', $page.url.pathname)
                      ? 'font-semibold border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
-                   max-[1050px]:hidden max-[1050px]:text-base"
+                   max-[1000px]:hidden max-[1000px]:text-base"
           >Scoreboard</a>
 
           <a
@@ -109,32 +109,37 @@
         </nav>
       </div>
 
-      <!-- Right: Search + Profile (always visible) -->
-      <div class="flex items-center gap-5 h-[40px] max-[930px]:h-[36px] max-[930px]:gap-3 transition-all duration-300 max-[930px]:flex-1 max-[930px]:min-w-0">
-        <!-- Search -->
-        <div class="relative flex items-center h-[40px] w-[280px] transition-all duration-300 max-[930px]:h-[34px] max-[930px]:w-auto max-[930px]:flex-1 max-[930px]:min-w-0 max-[930px]:max-w-[720px]">
-          <img src="/images/search.svg" alt="Search" class="absolute left-3 h-4 w-4 pointer-events-none opacity-70 max-[930px]:h-4 max-[930px]:w-4" />
-          <input
-            type="text"
-            bind:value={searchQuery}
-            placeholder={placeholder}
-            class="h-full w-full rounded-full border border-blackcurrant bg-white text-blackcurrant
-                   placeholder-blackcurrant/60 pl-9 pr-9 text-base max-[930px]:text-[14px] leading-none box-border
-                   outline-none focus:outline-none focus:border-fancy-blue-dark
-                   focus:ring-2 focus:ring-fancy-blue-dark/30 transition-all duration-300
-                   max-[930px]:pl-8 max-[930px]:pr-8"
-          />
-          {#if searchQuery}
-            <button
-              type="button"
-              on:click={clearSearch}
-              class="absolute right-3 p-1 hover:scale-110 transition-transform max-[930px]:right-2"
-              aria-label="Clear search"
-            >
-              <img src="/images/close.svg" alt="Clear" class="h-4 w-4 opacity-70 hover:opacity-100 max-[930px]:h-4 max-[930px]:w-4" />
-            </button>
-          {/if}
-        </div>
+<!-- Right: Search + Profile (always visible) -->
+<div class="flex items-center gap-5 h-[40px] max-[750px]:h-[36px] max-[750px]:gap-3 transition-transform duration-300 max-[750px]:flex-1 max-[750px]:min-w-0">
+  <!-- Search -->
+  <div class="relative flex items-center h-[40px] w-[280px] transition-transform duration-300 
+              max-[750px]:h-[34px] max-[750px]:w-auto max-[750px]:flex-1 
+              max-[750px]:min-w-0 max-[750px]:max-w-[720px] gap-0">
+    <img src="/images/search.svg" alt="Search" 
+         class="absolute left-3 h-4 w-4 pointer-events-none opacity-70 
+                max-[750px]:h-4 max-[750px]:w-4" />
+    <input
+      type="text"
+      bind:value={searchQuery}
+      placeholder={placeholder}
+      class="h-full w-full rounded-full border border-blackcurrant bg-white text-blackcurrant
+             placeholder-blackcurrant/60 pl-9 pr-9 text-base max-[750px]:text-[14px] leading-none box-border
+             outline-none focus:outline-none focus:border-fancy-blue-dark
+             focus:ring-2 focus:ring-fancy-blue-dark/30 transition-transform duration-300
+             max-[750px]:pl-8 max-[750px]:pr-8"
+    />
+    {#if searchQuery}
+      <button
+        type="button"
+        on:click={clearSearch}
+        class="absolute right-3 p-1 hover:scale-110 transition-transform max-[750px]:right-2"
+        aria-label="Clear search"
+      >
+        <img src="/images/close.svg" alt="Clear" 
+             class="h-4 w-4 opacity-70 hover:opacity-100 max-[750px]:h-4 max-[750px]:w-4" />
+      </button>
+    {/if}
+  </div>
 
         <!-- Profile -->
         <a
