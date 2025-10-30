@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="37px" height="40px" viewBox="0 0 37 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Artboard</title>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="favicon-dark" transform="translate(1.0009, 1.1687)" fill="#FFFFFF" fill-rule="nonzero" stroke="#FFFFFF" stroke-width="2">
+            <g id="Group" transform="translate(14.7189, 25.0965) rotate(90) translate(-14.7189, -25.0965)translate(2.2018, 21.3025)">
+                <g id="GAME" transform="translate(0, -0)">
+                    <rect id="Combined-Shape" x="0" y="7.80595993e-16" width="25.0342867" height="7.58808463"></rect>
+                </g>
+            </g>
+            <g id="Group-3" transform="translate(26.9399, 18.8276) rotate(79) translate(-26.9399, -18.8276)translate(8.4974, 15.0335)">
+                <rect id="Combined-Shape" x="-1.75057201e-16" y="-1.06210377e-15" width="36.8849329" height="7.58808463"></rect>
+            </g>
+            <g id="Group-2" transform="translate(3.794, 22.884) rotate(90) translate(-3.794, -22.884)translate(-11.1303, 19.09)">
+                <polygon id="Combined-Shape" points="29.8486117 0 29.8486117 7.58808463 0 7.58808463 0 0"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
