@@ -51,7 +51,7 @@
           <img
             src="/logo.svg"
             alt="Board Game Library Logo"
-            class="h-10 max-[930px]:h-9 w-auto -translate-y-[2px] transition-all duration-300"
+            class="h-9 max-[930px]:h-6 w-auto -translate-y-[1px] transition-all duration-300"
           />
         </a>
 
@@ -139,7 +139,7 @@
         <!-- Profile -->
         <a
           href="/account"
-          class="flex items-center h-[55px] w-[55px] max-[930px]:h-[44px] max-[930px]:w-[44px]
+          class="flex items-center h-[40px] w-[40px] max-[930px]:h-[36px] max-[930px]:w-[36px]
                  group relative shrink-0 transition-all duration-300"
           aria-label="Account"
         >
