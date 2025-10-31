@@ -29,9 +29,9 @@
   <!-- Multicolor top border (10px → 6px with animation) -->
   <div class="absolute top-0 left-0 w-full h-[10px] top-border transition-all duration-300 max-[930px]:h-[6px]"></div>
 
-  <!-- Inner container (padding shrinks with bar) -->
+  <!-- Inner container (now 1440px max) -->
   <div
-    class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-full
+    class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8 h-full
            pt-[10px] max-[930px]:pt-[5px]
            transition-all duration-300"
   >
@@ -109,37 +109,37 @@
         </nav>
       </div>
 
-<!-- Right: Search + Profile (always visible) -->
-<div class="flex items-center gap-5 h-[40px] max-[750px]:h-[36px] max-[750px]:gap-3 transition-transform duration-300 max-[750px]:flex-1 max-[750px]:min-w-0">
-  <!-- Search -->
-  <div class="relative flex items-center h-[40px] w-[280px] transition-transform duration-300 
-              max-[750px]:h-[34px] max-[750px]:w-auto max-[750px]:flex-1 
-              max-[750px]:min-w-0 max-[750px]:max-w-[720px] gap-0">
-    <img src="/images/search.svg" alt="Search" 
-         class="absolute left-3 h-4 w-4 pointer-events-none opacity-70 
-                max-[750px]:h-4 max-[750px]:w-4" />
-    <input
-      type="text"
-      bind:value={searchQuery}
-      placeholder={placeholder}
-      class="h-full w-full rounded-full border border-blackcurrant bg-white text-blackcurrant
-             placeholder-blackcurrant/60 pl-9 pr-9 text-base max-[750px]:text-[14px] leading-none box-border
-             outline-none focus:outline-none focus:border-fancy-blue-dark
-             focus:ring-2 focus:ring-fancy-blue-dark/30 transition-transform duration-300
-             max-[750px]:pl-8 max-[750px]:pr-8"
-    />
-    {#if searchQuery}
-      <button
-        type="button"
-        on:click={clearSearch}
-        class="absolute right-3 p-1 hover:scale-110 transition-transform max-[750px]:right-2"
-        aria-label="Clear search"
-      >
-        <img src="/images/close.svg" alt="Clear" 
-             class="h-4 w-4 opacity-70 hover:opacity-100 max-[750px]:h-4 max-[750px]:w-4" />
-      </button>
-    {/if}
-  </div>
+      <!-- Right: Search + Profile (always visible) -->
+      <div class="flex items-center gap-5 h-[40px] max-[750px]:h-[36px] max-[750px]:gap-3 transition-transform duration-300 max-[750px]:flex-1 max-[750px]:min-w-0">
+        <!-- Search -->
+        <div class="relative flex items-center h-[40px] w-[280px] transition-transform duration-300 
+                    max-[750px]:h-[34px] max-[750px]:w-auto max-[750px]:flex-1 
+                    max-[750px]:min-w-0 max-[750px]:max-w-[720px] gap-0">
+          <img src="/images/search.svg" alt="Search" 
+               class="absolute left-3 h-4 w-4 pointer-events-none opacity-70 
+                      max-[750px]:h-4 max-[750px]:w-4" />
+          <input
+            type="text"
+            bind:value={searchQuery}
+            placeholder={placeholder}
+            class="h-full w-full rounded-full border border-blackcurrant bg-white text-blackcurrant
+                   placeholder-blackcurrant/60 pl-9 pr-9 text-base max-[750px]:text-[14px] leading-none box-border
+                   outline-none focus:outline-none focus:border-fancy-blue-dark
+                   focus:ring-2 focus:ring-fancy-blue-dark/30 transition-transform duration-300
+                   max-[750px]:pl-8 max-[750px]:pr-8"
+          />
+          {#if searchQuery}
+            <button
+              type="button"
+              on:click={clearSearch}
+              class="absolute right-3 p-1 hover:scale-110 transition-transform max-[750px]:right-2"
+              aria-label="Clear search"
+            >
+              <img src="/images/close.svg" alt="Clear" 
+                   class="h-4 w-4 opacity-70 hover:opacity-100 max-[750px]:h-4 max-[750px]:w-4" />
+            </button>
+          {/if}
+        </div>
 
         <!-- Profile -->
         <a
@@ -172,7 +172,6 @@
             <img src="/images/menu.svg" alt="Open menu" class="h-[16px] w-[16px]" />
           {/if}
         </button>
-
       </div>
     </div>
   </div>
@@ -180,7 +179,7 @@
   <!-- Mobile drawer -->
   {#if open}
     <div style="background: var(--color-navbar-light);">
-      <div class="mx-auto max-w-7xl px-4 py-3 flex flex-col gap-3">
+      <div class="mx-auto max-w-[1440px] px-4 py-3 flex flex-col gap-3">
         {#each links as link}
           <a
             href={link.href}

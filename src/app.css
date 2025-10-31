@@ -48,7 +48,6 @@
   --color-tabby: #E09F3E;
   --color-wine-purple: #670034;
   --color-fancy-blue-dark: #335C67;
-  --color-fancy-blue: #476F79;
   --color-librarian-lipstick-red: #95290C;
 
   /* gradient token for navbar background → class: bg-navbar-light */
@@ -69,7 +68,7 @@
       var(--color-reading-chair-brown) 0% 20%,
       var(--color-tabby)              20% 40%,
       var(--color-wine-purple)        40% 60%,
-      var(--color-fancy-blue)         60% 80%,
+      var(--color-fancy-blue-dark)         60% 80%,
       var(--color-librarian-lipstick-red) 80% 100%
     );
   }
