@@ -42,7 +42,9 @@
 
 /* 1) Design tokens go in @theme */
 @theme {
+  --color-dusty-hallway: #D1CFC7;
   --color-dusty-hallway-dark: #A8A397;
+  --color-dusty-hallway-very-dark: #514D43;
   --color-blackcurrant: #261E23;
   --color-reading-chair-brown: #664718;
   --color-tabby: #E09F3E;
