@@ -79,7 +79,6 @@
     }
   }
 
-  // ✅ Immediately compute an initial value so the capsule isn't blank on first paint
   let countdown: string = computeCountdown();
 
   function updateCountdown() {
@@ -87,7 +86,6 @@
   }
 
   onMount(() => {
-    // Already has an initial value; just keep it updated
     timer = setInterval(updateCountdown, 60 * 1000);
     return () => {
       if (timer) clearInterval(timer);
@@ -100,7 +98,7 @@
          h-[86px] max-[1055px]:h-[61px]"
   style="
     background: var(--color-navbar-light);
-    font-family: 'Reddit Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   "
 >
   <!-- Multicolor top border -->
@@ -129,6 +127,8 @@
             src="/logo.svg"
             alt="Board Game Library Logo"
             class="h-9 max-[1055px]:h-6 w-auto -translate-y-[1px] transition-all duration-300"
+            width="37"
+            height="40"
           />
         </a>
 
@@ -139,50 +139,58 @@
         >
           <a
             href="/"
-            class="relative pb-[2px] text-blackcurrant transition-colors border-b-4
+            class="nav-link relative pb-[2px] text-blackcurrant transition-colors border-b-4
                    hover:border-blackcurrant hover:text-blackcurrant
                    {isActive('/', $page.url.pathname)
                      ? 'font-semibold border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
                    max-[650px]:hidden max-[900px]:text-base"
-          >Top Games</a>
+          >
+            Top Games
+          </a>
 
           <a
             href="/trending"
-            class="relative pb-[2px] text-blackcurrant transition-colors border-b-4
+            class="nav-link relative pb-[2px] text-blackcurrant transition-colors border-b-4
                    hover:border-blackcurrant hover:text-blackcurrant
                    {isActive('/trending', $page.url.pathname)
                      ? 'font-semibold border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
                    max-[650px]:hidden max-[900px]:text-base"
-          >Trending Games</a>
+          >
+            Trending Games
+          </a>
 
           <a
             href="/community"
-            class="relative pb-[2px] text-blackcurrant transition-colors border-b-4
+            class="nav-link relative pb-[2px] text-blackcurrant transition-colors border-b-4
                    hover:border-blackcurrant hover:text-blackcurrant
                    {isActive('/community', $page.url.pathname)
                      ? 'font-semibold border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
                    max-[800px]:hidden max-[800px]:text-base"
-          >Community</a>
+          >
+            Community
+          </a>
 
           <!-- My Library now falls off later than Daily Drop -->
           <a
             href="/library"
-            class="relative pb-[2px] text-blackcurrant transition-colors border-b-4
+            class="nav-link relative pb-[2px] text-blackcurrant transition-colors border-b-4
                    hover:border-blackcurrant hover:text-blackcurrant
                    {isActive('/library', $page.url.pathname)
                      ? 'font-semibold border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
                    max-[950px]:hidden max-[950px]:text-base"
-          >My Library</a>
+          >
+            My Library
+          </a>
 
           <!-- Daily Drop + Capsule Countdown (desktop) -->
           <div class="flex items-center gap-3 max-[1225px]:hidden">
             <a
               href="/drop"
-              class="relative pb-[2px] text-blackcurrant transition-colors border-b-4
+              class="nav-link relative pb-[2px] text-blackcurrant transition-colors border-b-4
                      hover:border-blackcurrant hover:text-blackcurrant
                      {isActive('/drop', $page.url.pathname)
                        ? 'font-semibold border-blackcurrant text-blackcurrant'
