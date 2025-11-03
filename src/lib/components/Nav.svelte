@@ -200,12 +200,15 @@
               Daily Drop
             </a>
 
-            <span
+            <!-- ✅ Capsule now links to /drop too -->
+            <a
+              href="/drop"
               class="px-3 py-[8px] text-xs font-medium rounded-full select-none font-mono leading-none
                      bg-dusty-hallway/50 text-dusty-hallway-very-dark"
+              aria-label="Time until the next Daily Drop"
             >
               {countdown}
-            </span>
+            </a>
           </div>
         </nav>
       </div>
@@ -307,13 +310,15 @@
                 {link.label}
               </a>
 
-              <!-- Capsule countdown (mobile) -->
-              <span
+              <!-- ✅ Capsule countdown (mobile) now links to /drop too -->
+              <a
+                href="/drop"
                 class="px-3 py-[8px] text-xs font-medium rounded-full select-none font-mono leading-none
                        bg-dusty-hallway/50 text-dusty-hallway-very-dark"
+                aria-label="Time until the next Daily Drop"
               >
                 {countdown}
-              </span>
+              </a>
             </div>
           {:else}
             <a
