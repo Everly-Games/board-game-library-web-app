@@ -61,20 +61,4 @@
     padding-bottom: 4px;
     white-space: nowrap;
   }
-
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 4px;
-    width: 0%;
-    background-color: var(--color-blackcurrant);
-    transition: width 0.3s ease;
-  }
-
-  .nav-link:hover::after,
-  .nav-link[aria-current='page']::after {
-    width: 100%;
-  }
 }
