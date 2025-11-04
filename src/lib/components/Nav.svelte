@@ -3,20 +3,34 @@
   import { onMount } from 'svelte';
 
   const links = [
+    { href: '/profile', label: 'Gaming Profile' },
     { href: '/', label: 'Top Games' },
     { href: '/trending', label: 'Trending Games' },
-    { href: '/news', label: 'News' },
-    { href: '/scoreboard', label: 'Scoreboard' },
+    { href: '/community', label: 'Community' },
     { href: '/library', label: 'My Library' },
-    { href: '/drop', label: 'Daily Drop' }
+    { href: '/drop', label: 'Daily Drop' },
+    { href: '/profile/settings', label: 'Settings' },
   ];
 
   let open = false;
   let searchQuery = '';
   const placeholder = 'Board Game';
 
-  const isActive = (href: string, current: string) =>
-    current === href || (href !== '/' && current.startsWith(href));
+  const isActive = (href: string, current: string) => {
+    // Home: only highlight exactly "/"
+    if (href === '/') {
+      return current === '/';
+    }
+
+    // Gaming Profile: only highlight exactly "/profile"
+    if (href === '/profile') {
+      return current === '/profile';
+    }
+
+    // Everyone else: exact match OR "section" match (e.g. /library, /library/123)
+    return current === href || current.startsWith(href + '/');
+  };
+
 
   function clearSearch() {
     searchQuery = '';
@@ -200,7 +214,6 @@
               Daily Drop
             </a>
 
-            <!-- ✅ Capsule now links to /drop too -->
             <a
               href="/drop"
               class="px-3 py-[8px] text-xs font-medium rounded-full select-none font-mono leading-none
@@ -257,11 +270,13 @@
           {/if}
         </div>
 
-        <!-- Profile -->
+        <!-- Profile (desktop icon) -->
         <a
-          href="/profile"
+          href="/profile" 
           class="flex items-center h-[40px] w-[40px] max-[1055px]:h-[36px] max-[1055px]:w-[36px]
-                 group relative shrink-0 transition-all duration-300"
+                 group relative shrink-0 transition-all duration-300
+                 max-[1225px]:hidden max-[1225px]:t
+                 ext-base"
           aria-label="Profile"
         >
           <div
@@ -276,7 +291,7 @@
         <button
           class="hidden max-[1225px]:inline-flex items-center justify-center h-[36px] w-[36px]
                   rounded-md text-blackcurrant leading-[0.9]
-                  hover:bg-blackcurrant/10 transition"
+                  hover:bg-blackcurrant/10 transition border border-blackcurrant"
           aria-label="Toggle menu"
           aria-expanded={open}
           on:click={() => (open = !open)}
@@ -310,7 +325,6 @@
                 {link.label}
               </a>
 
-              <!-- ✅ Capsule countdown (mobile) now links to /drop too -->
               <a
                 href="/drop"
                 class="px-3 py-[8px] text-xs font-medium rounded-full select-none font-mono leading-none
@@ -321,17 +335,41 @@
               </a>
             </div>
           {:else}
-            <a
-              href={link.href}
-              class="py-2 text-base text-blackcurrant hover:text-blackcurrant transition-colors
-                     {isActive(link.href, $page.url.pathname)
-                       ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
-                       : ''}"
-              on:click={() => (open = false)}
-              aria-current={isActive(link.href, $page.url.pathname) ? 'page' : undefined}
-            >
-              {link.label}
-            </a>
+            {#if link.href === '/profile'}
+              <!-- ✅ Gaming Profile with icon on the left -->
+              <a
+                href={link.href}
+                class="flex items-center gap-2 py-2 text-base text-blackcurrant hover:text-blackcurrant transition-colors
+                       {isActive(link.href, $page.url.pathname)
+                         ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
+                         : ''}"
+                on:click={() => (open = false)}
+                aria-current={isActive(link.href, $page.url.pathname) ? 'page' : undefined}
+              >
+                <img
+                  src="/images/account.svg"
+                  alt=""
+                  class="h-9 w-9"
+                  aria-hidden="true"
+                />
+                <span>{link.label}</span>
+              </a>
+
+              <!-- Divider below Gaming Profile -->
+              <hr class="border-t border-blackcurrant/30 my-2" />
+            {:else}
+              <a
+                href={link.href}
+                class="py-2 text-base text-blackcurrant hover:text-blackcurrant transition-colors
+                       {isActive(link.href, $page.url.pathname)
+                         ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
+                         : ''}"
+                on:click={() => (open = false)}
+                aria-current={isActive(link.href, $page.url.pathname) ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            {/if}
           {/if}
         {/each}
       </div>
