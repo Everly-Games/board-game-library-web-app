@@ -4,22 +4,32 @@
 
   const links = [
     { href: '/profile', label: 'Gaming Profile' },
-    { href: '/', label: 'Top Games' },
+    { href: '/top', label: 'Top Games' },
     { href: '/trending', label: 'Trending Games' },
     { href: '/community', label: 'Community' },
     { href: '/library', label: 'My Library' },
     { href: '/drop', label: 'Daily Drop' },
     { href: '/profile/settings', label: 'Settings' },
+    { href: '/logout', label: 'Log Out' }
   ];
 
   let open = false;
   let searchQuery = '';
   const placeholder = 'Board Game';
 
+  // 🔐 Logged-in state (adjust `user` if your data shape is different)
+  let isLoggedIn = false;
+  $: isLoggedIn = Boolean($page.data?.user);
+
   const isActive = (href: string, current: string) => {
-    // Home: only highlight exactly "/"
-    if (href === '/') {
-      return current === '/';
+    // Top Games: treat "/" as Top when logged OUT
+    if (href === '/top') {
+      return (!isLoggedIn && current === '/') || current === '/top';
+    }
+
+    // Trending Games: treat "/" as Trending when logged IN
+    if (href === '/trending') {
+      return (isLoggedIn && current === '/') || current === '/trending';
     }
 
     // Gaming Profile: only highlight exactly "/profile"
@@ -30,7 +40,6 @@
     // Everyone else: exact match OR "section" match (e.g. /library, /library/123)
     return current === href || current.startsWith(href + '/');
   };
-
 
   function clearSearch() {
     searchQuery = '';
@@ -131,9 +140,9 @@
     >
       <!-- Left: logo + links -->
       <div class="flex items-center gap-0 sm:gap-6 md:gap-6">
-        <!-- Brand -->
+        <!-- Brand (Home) -->
         <a
-          href="/"
+          href={isLoggedIn ? '/trending' : '/top'}
           class="flex items-center gap-2 font-semibold text-xl max-[1055px]:text-lg
                  text-blackcurrant hover:text-blackcurrant transition-all duration-300"
         >
@@ -152,10 +161,10 @@
                  font-medium pt-[2px] transition-all duration-300"
         >
           <a
-            href="/"
+            href="/top"
             class="nav-link relative pb-[2px] text-blackcurrant transition-colors border-b-4
                    hover:border-blackcurrant hover:text-blackcurrant
-                   {isActive('/', $page.url.pathname)
+                   {isActive('/top', $page.url.pathname)
                      ? 'font-semibold border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
                    max-[650px]:hidden max-[900px]:text-base"
@@ -217,7 +226,7 @@
             <a
               href="/drop"
               class="px-3 py-[8px] text-xs font-medium rounded-full select-none font-mono leading-none
-                     bg-dusty-hallway/50 text-dusty-hallway-very-dark"
+                     bg-reading-chair-brown/15 text-dusty-hallway-very-dark"
               aria-label="Time until the next Daily Drop"
             >
               {countdown}
@@ -272,11 +281,10 @@
 
         <!-- Profile (desktop icon) -->
         <a
-          href="/profile" 
+          href="/profile"
           class="flex items-center h-[40px] w-[40px] max-[1055px]:h-[36px] max-[1055px]:w-[36px]
                  group relative shrink-0 transition-all duration-300
-                 max-[1225px]:hidden max-[1225px]:t
-                 ext-base"
+                 max-[1225px]:hidden max-[1225px]:text-base"
           aria-label="Profile"
         >
           <div
@@ -328,7 +336,7 @@
               <a
                 href="/drop"
                 class="px-3 py-[8px] text-xs font-medium rounded-full select-none font-mono leading-none
-                       bg-dusty-hallway/50 text-dusty-hallway-very-dark"
+                       bg-reading-chair-brown/15 text-dusty-hallway-very-dark"
                 aria-label="Time until the next Daily Drop"
               >
                 {countdown}
@@ -336,27 +344,49 @@
             </div>
           {:else}
             {#if link.href === '/profile'}
-              <!-- ✅ Gaming Profile with icon on the left -->
-              <a
-                href={link.href}
-                class="flex items-center gap-2 py-2 text-base text-blackcurrant hover:text-blackcurrant transition-colors
-                       {isActive(link.href, $page.url.pathname)
-                         ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
-                         : ''}"
-                on:click={() => (open = false)}
-                aria-current={isActive(link.href, $page.url.pathname) ? 'page' : undefined}
-              >
-                <img
-                  src="/images/account.svg"
-                  alt=""
-                  class="h-9 w-9"
-                  aria-hidden="true"
-                />
-                <span>{link.label}</span>
-              </a>
+              <!-- Profile + Settings pill -->
+              <div class="py-2">
+                <div
+                  class="flex items-center justify-between gap-4 px-5 py-4 rounded-[5px]
+                         bg-dusty-hallway/50 border border-dusty-hallway-dark"
+                >
+                  <!-- Left: Gaming Profile -->
+                  <a
+                    href="/profile"
+                    class="flex items-center gap-2 text-blackcurrant transition-colors
+                           {isActive('/profile', $page.url.pathname) ? 'font-semibold' : ''}"
+                    on:click={() => (open = false)}
+                    aria-current={isActive('/profile', $page.url.pathname) ? 'page' : undefined}
+                  >
+                    <img
+                      src="/images/account.svg"
+                      alt=""
+                      class="h-8 w-8 brightness-0"
+                      aria-hidden="true"
+                    />
+                    <span>{link.label}</span>
+                  </a>
 
-              <!-- Divider below Gaming Profile -->
-              <hr class="border-t border-blackcurrant/30 my-2" />
+                  <!-- Right: Settings -->
+                  <a
+                    href="/profile/settings"
+                    class="flex items-center gap-2 text-sm text-blackcurrant justify-end transition-colors
+                           {isActive('/profile/settings', $page.url.pathname) ? 'font-semibold' : ''}"
+                    on:click={() => (open = false)}
+                    aria-current={isActive('/profile/settings', $page.url.pathname) ? 'page' : undefined}
+                  >
+                    <img
+                      src="/images/settings.svg"
+                      alt=""
+                      class="h-5 w-5 brightness-0"
+                      aria-hidden="true"
+                    />
+                    <span>Settings</span>
+                  </a>
+                </div>
+              </div>
+            {:else if link.href === '/profile/settings'}
+              <!-- Settings is rendered inside the Profile pill above, so skip here -->
             {:else}
               <a
                 href={link.href}
