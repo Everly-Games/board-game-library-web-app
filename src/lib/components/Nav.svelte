@@ -275,7 +275,7 @@
                 src="/images/close.svg"
                 alt="Clear"
                 class="h-4 w-4 opacity-70 hover:opacity-100
-                       max-[875px]:h-4max-[875px]:w-4"
+                      max-[875px]:h-4 max-[875px]:w-4"
               />
             </button>
           {/if}
@@ -298,14 +298,15 @@
         </a>
 
         <!-- Hamburger -->
-        <button
-          class="hidden max-[1225px]:inline-flex items-center justify-center h-[42px] w-[42px]
-                  rounded-md text-blackcurrant leading-[0.9]
-                  hover:bg-blackcurrant/10 transition border border-blackcurrant"
-          aria-label="Toggle menu"
-          aria-expanded={open}
-          on:click={() => (open = !open)}
-        >
+          <button
+            type="button"
+            class="hidden max-[1225px]:inline-flex items-center justify-center h-[42px] w-[42px]
+                    rounded-md text-blackcurrant leading-[0.9]
+                    hover:bg-blackcurrant/10 transition border border-blackcurrant"
+            aria-label="Toggle menu"
+            aria-expanded={open}
+            on:click={() => (open = !open)}
+          >
           {#if open}
             <img src="/images/close.svg" alt="Close menu" class="h-[18px] w-[18px]" />
           {:else}
