@@ -252,7 +252,7 @@
             src="/images/search.svg"
             alt="Search"
             class="absolute left-4 h-4 w-4 pointer-events-none opacity-70
-                   max-[875px]:h-5 max-[875px]:w-5"
+                   max-[875px]:h-4 max-[875px]:w-4"
           />
           <input
             type="text"
@@ -275,7 +275,7 @@
                 src="/images/close.svg"
                 alt="Clear"
                 class="h-4 w-4 opacity-70 hover:opacity-100
-                       max-[875px]:h-5 max-[875px]:w-5"
+                       max-[875px]:h-4max-[875px]:w-4"
               />
             </button>
           {/if}
