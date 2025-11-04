@@ -344,47 +344,52 @@
             </div>
           {:else}
             {#if link.href === '/profile'}
-              <!-- Profile + Settings pill -->
-              <div class="py-2">
-                <div
-                  class="flex items-center justify-between gap-4 px-5 py-4 rounded-[5px]
-                         bg-dusty-hallway/50 border border-dusty-hallway-dark"
+            <!-- Profile + Settings pill -->
+            <div class="py-2">
+              <div
+                class="flex items-center justify-between gap-4 px-5 py-4 rounded-[5px]
+                      bg-dusty-hallway/50 border border-dusty-hallway-dark"
+              >
+                <!-- Left: Gaming Profile -->
+                <a
+                  href="/profile"
+                  class="flex items-center gap-2 text-blackcurrant transition-colors
+                        {isActive('/profile', $page.url.pathname)
+                          ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
+                          : ''}"
+                  on:click={() => (open = false)}
+                  aria-current={isActive('/profile', $page.url.pathname) ? 'page' : undefined}
                 >
-                  <!-- Left: Gaming Profile -->
-                  <a
-                    href="/profile"
-                    class="flex items-center gap-2 text-blackcurrant transition-colors
-                           {isActive('/profile', $page.url.pathname) ? 'font-semibold' : ''}"
-                    on:click={() => (open = false)}
-                    aria-current={isActive('/profile', $page.url.pathname) ? 'page' : undefined}
-                  >
-                    <img
-                      src="/images/account.svg"
-                      alt=""
-                      class="h-8 w-8 brightness-0"
-                      aria-hidden="true"
-                    />
-                    <span>{link.label}</span>
-                  </a>
+                  <img
+                    src="/images/account.svg"
+                    alt=""
+                    class="h-8 w-8 brightness-0"
+                    aria-hidden="true"
+                  />
+                  <span>{link.label}</span>
+                </a>
 
-                  <!-- Right: Settings -->
-                  <a
-                    href="/profile/settings"
-                    class="flex items-center gap-2 text-sm text-blackcurrant justify-end transition-colors
-                           {isActive('/profile/settings', $page.url.pathname) ? 'font-semibold' : ''}"
-                    on:click={() => (open = false)}
-                    aria-current={isActive('/profile/settings', $page.url.pathname) ? 'page' : undefined}
-                  >
-                    <img
-                      src="/images/settings.svg"
-                      alt=""
-                      class="h-5 w-5 brightness-0"
-                      aria-hidden="true"
-                    />
-                    <span>Settings</span>
-                  </a>
-                </div>
+                <!-- Right: Settings -->
+                <a
+                  href="/profile/settings"
+                  class="flex items-center gap-2 text-sm text-blackcurrant justify-end transition-colors
+                        {isActive('/profile/settings', $page.url.pathname)
+                          ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
+                          : ''}"
+                  on:click={() => (open = false)}
+                  aria-current={isActive('/profile/settings', $page.url.pathname) ? 'page' : undefined}
+                >
+                  <img
+                    src="/images/settings.svg"
+                    alt=""
+                    class="h-5 w-5 brightness-0"
+                    aria-hidden="true"
+                  />
+                  <span>Settings</span>
+                </a>
               </div>
+            </div>
+
             {:else if link.href === '/profile/settings'}
               <!-- Settings is rendered inside the Profile pill above, so skip here -->
             {:else}
