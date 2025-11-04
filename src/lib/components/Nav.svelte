@@ -118,7 +118,7 @@
 
 <header
   class="sticky top-0 z-50 relative text-blackcurrant not-prose transition-all duration-300
-         h-[86px] max-[1055px]:h-[61px]"
+         h-[86px] max-[1055px]:h-[71px]"
   style="
     background: var(--color-navbar-light);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -135,7 +135,7 @@
            pt-[10px] max-[1055px]:pt-[5px] transition-all duration-300"
   >
     <div
-      class="flex items-center justify-between gap-4 h-[76px] max-[1055px]:h-[56px]
+      class="flex items-center justify-between gap-4 h-[76px] max-[1055px]:h-[66px]
              transition-all duration-300"
     >
       <!-- Left: logo + links -->
@@ -149,7 +149,7 @@
           <img
             src="/logo.svg"
             alt="Board Game Library Logo"
-            class="h-9 max-[1055px]:h-6 w-auto -translate-y-[1px] transition-all duration-300"
+            class="h-9 max-[1055px]:h-8 w-auto -translate-y-[1px] transition-all duration-300"
             width="37"
             height="40"
           />
@@ -237,21 +237,22 @@
 
       <!-- Right: Search + Profile + Hamburger -->
       <div
-        class="flex items-center gap-5 h-[40px] max-[875px]:h-[36px]
+        class="flex items-center gap-5 h-[40px] max-[875px]:h-[46px]
                max-[875px]:gap-3 transition-transform duration-300
                max-[875px]:flex-1 max-[875px]:min-w-0"
       >
         <!-- Search -->
         <div
           class="relative flex items-center h-[40px] w-[280px]
-                 transition-transform duration-300 max-[875px]:h-[34px]
+                 transition-transform duration-300 max-[875px]:h-[44px]
                  max-[875px]:w-auto max-[875px]:flex-1 max-[875px]:min-w-0
                  max-[875px]:max-w-[720px] gap-0"
         >
           <img
             src="/images/search.svg"
             alt="Search"
-            class="absolute left-3 h-4 w-4 pointer-events-none opacity-70 max-[875px]:h-4 max-[875px]:w-4"
+            class="absolute left-3 h-4 w-4 pointer-events-none opacity-70
+                   max-[875px]:h-5 max-[875px]:w-5"
           />
           <input
             type="text"
@@ -261,7 +262,7 @@
                    placeholder-blackcurrant/60 pl-9 pr-9 text-base leading-none box-border
                    outline-none focus:outline-none focus:border-fancy-blue-dark
                    focus:ring-2 focus:ring-fancy-blue-dark/30 transition-transform duration-300
-                   max-[875px]:text-[14px] max-[875px]:pl-8 max-[875px]:pr-8"
+                   max-[875px]:text-[15px] max-[875px]:pl-9 max-[875px]:pr-8"
           />
           {#if searchQuery}
             <button
@@ -273,7 +274,8 @@
               <img
                 src="/images/close.svg"
                 alt="Clear"
-                class="h-4 w-4 opacity-70 hover:opacity-100 max-[875px]:h-4 max-[875px]:w-4"
+                class="h-4 w-4 opacity-70 hover:opacity-100
+                       max-[875px]:h-5 max-[875px]:w-5"
               />
             </button>
           {/if}
@@ -297,7 +299,7 @@
 
         <!-- Hamburger -->
         <button
-          class="hidden max-[1225px]:inline-flex items-center justify-center h-[36px] w-[36px]
+          class="hidden max-[1225px]:inline-flex items-center justify-center h-[46px] w-[46px]
                   rounded-md text-blackcurrant leading-[0.9]
                   hover:bg-blackcurrant/10 transition border border-blackcurrant"
           aria-label="Toggle menu"
@@ -305,9 +307,9 @@
           on:click={() => (open = !open)}
         >
           {#if open}
-            <img src="/images/close.svg" alt="Close menu" class="h-[16px] w-[16px]" />
+            <img src="/images/close.svg" alt="Close menu" class="h-[20px] w-[20px]" />
           {:else}
-            <img src="/images/menu.svg" alt="Open menu" class="h-[16px] w-[16px]" />
+            <img src="/images/menu.svg" alt="Open menu" class="h-[20px] w-[20px]" />
           {/if}
         </button>
       </div>
@@ -344,51 +346,51 @@
             </div>
           {:else}
             {#if link.href === '/profile'}
-            <!-- Profile + Settings pill -->
-            <div class="py-2">
-              <div
-                class="flex items-center justify-between gap-4 px-5 py-4 rounded-[5px]
-                      bg-dusty-hallway/50 border border-dusty-hallway-dark"
-              >
-                <!-- Left: Gaming Profile -->
-                <a
-                  href="/profile"
-                  class="flex items-center gap-2 text-blackcurrant transition-colors
-                        {isActive('/profile', $page.url.pathname)
-                          ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
-                          : ''}"
-                  on:click={() => (open = false)}
-                  aria-current={isActive('/profile', $page.url.pathname) ? 'page' : undefined}
+              <!-- Profile + Settings pill -->
+              <div class="py-2">
+                <div
+                  class="flex items-center justify-between gap-4 px-5 py-4 rounded-[5px]
+                         bg-dusty-hallway/50 border border-dusty-hallway-dark"
                 >
-                  <img
-                    src="/images/account.svg"
-                    alt=""
-                    class="h-8 w-8 brightness-0"
-                    aria-hidden="true"
-                  />
-                  <span>{link.label}</span>
-                </a>
+                  <!-- Left: Gaming Profile -->
+                  <a
+                    href="/profile"
+                    class="flex items-center gap-2 text-blackcurrant transition-colors
+                           {isActive('/profile', $page.url.pathname)
+                             ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
+                             : ''}"
+                    on:click={() => (open = false)}
+                    aria-current={isActive('/profile', $page.url.pathname) ? 'page' : undefined}
+                  >
+                    <img
+                      src="/images/account.svg"
+                      alt=""
+                      class="h-8 w-8 brightness-0"
+                      aria-hidden="true"
+                    />
+                    <span>{link.label}</span>
+                  </a>
 
-                <!-- Right: Settings -->
-                <a
-                  href="/profile/settings"
-                  class="flex items-center gap-2 text-sm text-blackcurrant justify-end transition-colors
-                        {isActive('/profile/settings', $page.url.pathname)
-                          ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
-                          : ''}"
-                  on:click={() => (open = false)}
-                  aria-current={isActive('/profile/settings', $page.url.pathname) ? 'page' : undefined}
-                >
-                  <img
-                    src="/images/settings.svg"
-                    alt=""
-                    class="h-5 w-5 brightness-0"
-                    aria-hidden="true"
-                  />
-                  <span>Settings</span>
-                </a>
+                  <!-- Right: Settings -->
+                  <a
+                    href="/profile/settings"
+                    class="flex items-center gap-2 text-sm text-blackcurrant justify-end transition-colors
+                           {isActive('/profile/settings', $page.url.pathname)
+                             ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
+                             : ''}"
+                    on:click={() => (open = false)}
+                    aria-current={isActive('/profile/settings', $page.url.pathname) ? 'page' : undefined}
+                  >
+                    <img
+                      src="/images/settings.svg"
+                      alt=""
+                      class="h-5 w-5 brightness-0"
+                      aria-hidden="true"
+                    />
+                    <span>Settings</span>
+                  </a>
+                </div>
               </div>
-            </div>
 
             {:else if link.href === '/profile/settings'}
               <!-- Settings is rendered inside the Profile pill above, so skip here -->
