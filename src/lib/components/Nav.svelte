@@ -237,21 +237,21 @@
 
       <!-- Right: Search + Profile + Hamburger -->
       <div
-        class="flex items-center gap-5 h-[40px] max-[875px]:h-[46px]
+        class="flex items-center gap-5 h-[40px] max-[875px]:h-[42px]
                max-[875px]:gap-3 transition-transform duration-300
                max-[875px]:flex-1 max-[875px]:min-w-0"
       >
         <!-- Search -->
         <div
           class="relative flex items-center h-[40px] w-[280px]
-                 transition-transform duration-300 max-[875px]:h-[44px]
+                 transition-transform duration-300 max-[875px]:h-[40px]
                  max-[875px]:w-auto max-[875px]:flex-1 max-[875px]:min-w-0
                  max-[875px]:max-w-[720px] gap-0"
         >
           <img
             src="/images/search.svg"
             alt="Search"
-            class="absolute left-3 h-4 w-4 pointer-events-none opacity-70
+            class="absolute left-4 h-4 w-4 pointer-events-none opacity-70
                    max-[875px]:h-5 max-[875px]:w-5"
           />
           <input
@@ -259,10 +259,10 @@
             bind:value={searchQuery}
             placeholder={placeholder}
             class="h-full w-full rounded-full border border-blackcurrant bg-white text-blackcurrant
-                   placeholder-blackcurrant/60 pl-9 pr-9 text-base leading-none box-border
+                   placeholder-blackcurrant/60 pl-11 pr-9 text-base leading-none box-border
                    outline-none focus:outline-none focus:border-fancy-blue-dark
                    focus:ring-2 focus:ring-fancy-blue-dark/30 transition-transform duration-300
-                   max-[875px]:text-[15px] max-[875px]:pl-9 max-[875px]:pr-8"
+                   max-[875px]:text-[15px] max-[875px]:pl-10 max-[875px]:pr-8"
           />
           {#if searchQuery}
             <button
@@ -299,7 +299,7 @@
 
         <!-- Hamburger -->
         <button
-          class="hidden max-[1225px]:inline-flex items-center justify-center h-[46px] w-[46px]
+          class="hidden max-[1225px]:inline-flex items-center justify-center h-[42px] w-[42px]
                   rounded-md text-blackcurrant leading-[0.9]
                   hover:bg-blackcurrant/10 transition border border-blackcurrant"
           aria-label="Toggle menu"
@@ -307,9 +307,9 @@
           on:click={() => (open = !open)}
         >
           {#if open}
-            <img src="/images/close.svg" alt="Close menu" class="h-[20px] w-[20px]" />
+            <img src="/images/close.svg" alt="Close menu" class="h-[18px] w-[18px]" />
           {:else}
-            <img src="/images/menu.svg" alt="Open menu" class="h-[20px] w-[20px]" />
+            <img src="/images/menu.svg" alt="Open menu" class="h-[18px] w-[18px]" />
           {/if}
         </button>
       </div>
@@ -394,6 +394,7 @@
 
             {:else if link.href === '/profile/settings'}
               <!-- Settings is rendered inside the Profile pill above, so skip here -->
+
             {:else}
               <a
                 href={link.href}
