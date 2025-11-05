@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="300px" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Artboard</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="300" height="300" rx="70"></rect>
+    </defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <rect stroke="#979797" x="0.5" y="0.5" width="299" height="299" rx="70"></rect>
+            <g mask="url(#mask-2)">
+                <g transform="translate(1.2448, 0)">
+                    <rect id="Rectangle" stroke="none" fill="#E09F3E" fill-rule="evenodd" x="0" y="0" width="300" height="300"></rect>
+                    <path d="M57.3282828,117.39321 C88.3804659,119.188518 106.300302,121.283045 111.08779,123.676789 C115.875279,126.070533 117.969805,130.558804 117.371369,137.141601" id="Line-3" stroke="#261E23" stroke-width="12" fill="none" stroke-linecap="round"></path>
+                    <path d="M182.002465,117.39321 C213.054648,119.188518 230.974484,121.283045 235.761973,123.676789 C240.549461,126.070533 242.643988,130.558804 242.045552,137.141601" id="Line-3" stroke="#261E23" stroke-width="12" fill="none" stroke-linecap="round" transform="translate(212.0739, 127.2674) scale(-1, 1) translate(-212.0739, -127.2674)"></path>
+                    <path d="M148.940199,204.479163 C148.132076,217.358422 145.218986,225.450338 140.200929,228.754912 C132.673844,233.711773 121.508493,234.285529 109.12797,230.696972 C100.874288,228.3046 91.8113411,223.125774 81.9391304,215.160492" id="Line" stroke="#261E23" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M216.912297,204.479163 C216.104174,217.358422 213.191084,225.450338 208.173027,228.754912 C200.645942,233.711773 189.480591,234.285529 177.100068,230.696972 C168.846386,228.3046 159.783439,223.125774 149.911229,215.160492" id="Line" stroke="#261E23" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(183.4118, 218.7396) scale(-1, 1) translate(-183.4118, -218.7396)"></path>
+                    <path d="M151.008181,204.693576 C172.397481,187.09487 180.833648,175.407264 176.316681,169.630758 C169.54123,160.965998 130.093262,160.621915 123.590639,169.630758 C119.255557,175.636653 128.394737,187.324259 151.008181,204.693576 Z" id="Oval" stroke="none" fill="#261E23" fill-rule="evenodd"></path>
+                    <polygon id="Rectangle" stroke="none" fill="#261E23" fill-rule="evenodd" points="134.40724 7.10542736e-14 165.126958 7.10542736e-14 149.767099 74.6050308"></polygon>
+                    <polygon id="Rectangle" stroke="none" fill="#261E23" fill-rule="evenodd" points="178.292552 7.10542736e-14 209.01227 7.10542736e-14 193.652411 74.6050308"></polygon>
+                    <polygon id="Rectangle" stroke="none" fill="#261E23" fill-rule="evenodd" points="90.5219273 7.10542736e-14 121.241646 7.10542736e-14 105.881787 74.6050308"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
