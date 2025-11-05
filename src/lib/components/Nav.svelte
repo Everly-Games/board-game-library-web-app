@@ -259,10 +259,10 @@
             bind:value={searchQuery}
             placeholder={placeholder}
             class="h-full w-full rounded-full border border-blackcurrant bg-white text-blackcurrant
-                   placeholder-blackcurrant/60 pl-11 pr-9 text-base leading-none box-border
+                   placeholder-dusty-hallway-dark/75 pl-11 pr-9 text-base leading-none box-border
                    outline-none focus:outline-none focus:border-fancy-blue-dark
                    focus:ring-2 focus:ring-fancy-blue-dark/30 transition-transform duration-300
-                   max-[875px]:text-[17px] max-[875px]:pl-10 max-[875px]:pr-8 font-medium"
+                   max-[875px]:text-[17px] max-[875px]:pl-10 max-[875px]:pr-8"
           />
           {#if searchQuery}
             <button
