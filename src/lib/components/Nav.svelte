@@ -262,7 +262,7 @@
                    placeholder-blackcurrant/60 pl-11 pr-9 text-base leading-none box-border
                    outline-none focus:outline-none focus:border-fancy-blue-dark
                    focus:ring-2 focus:ring-fancy-blue-dark/30 transition-transform duration-300
-                   max-[875px]:text-[15px] max-[875px]:pl-10 max-[875px]:pr-8"
+                   max-[875px]:text-[16px] max-[875px]:pl-10 max-[875px]:pr-8"
           />
           {#if searchQuery}
             <button
