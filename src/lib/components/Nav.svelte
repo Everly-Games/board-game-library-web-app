@@ -150,8 +150,8 @@
             src="/logo.svg"
             alt="Board Game Library Logo"
             class="h-9 max-[1055px]:h-8 w-auto -translate-y-[1px] transition-all duration-300"
-            width="37"
-            height="40"
+            width="62"
+            height="46"
           />
         </a>
 
