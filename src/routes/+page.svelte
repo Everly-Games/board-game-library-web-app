@@ -9,6 +9,6 @@
     Board Game Library
   </h1>
   <p class="text-lg text-gray-600">
-    Coming soon...
+    Copyright Everly Games LLC. All Rights Reserved. <a class="underline" href="https://docs.boardgamelibrary.com/">Legal Docs</a>
   </p>
 </div>
