@@ -9,7 +9,7 @@
     { href: '/community', label: 'Community' },
     { href: '/library', label: 'My Library' },
     { href: '/drop', label: 'Daily Drop' },
-    { href: '/profile/settings', label: 'Settings' },
+    { href: '/settings', label: 'Settings' },
     { href: '/logout', label: 'Log Out' }
   ];
 
@@ -30,11 +30,6 @@
     // Trending Games: treat "/" as Trending when logged IN
     if (href === '/trending') {
       return (isLoggedIn && current === '/') || current === '/trending';
-    }
-
-    // Gaming Profile: only highlight exactly "/profile"
-    if (href === '/profile') {
-      return current === '/profile';
     }
 
     // Everyone else: exact match OR "section" match (e.g. /library, /library/123)
@@ -374,13 +369,13 @@
 
                   <!-- Right: Settings -->
                   <a
-                    href="/profile/settings"
+                    href="/settings"
                     class="flex items-center gap-2 text-sm text-blackcurrant justify-end transition-colors
-                           {isActive('/profile/settings', $page.url.pathname)
+                           {isActive('/settings', $page.url.pathname)
                              ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
                              : ''}"
                     on:click={() => (open = false)}
-                    aria-current={isActive('/profile/settings', $page.url.pathname) ? 'page' : undefined}
+                    aria-current={isActive('/settings', $page.url.pathname) ? 'page' : undefined}
                   >
                     <img
                       src="/images/settings.svg"
@@ -393,7 +388,7 @@
                 </div>
               </div>
 
-            {:else if link.href === '/profile/settings'}
+            {:else if link.href === '/settings'}
               <!-- Settings is rendered inside the Profile pill above, so skip here -->
 
             {:else}
