@@ -39,8 +39,8 @@ export const actions: Actions = {
     console.log('🔵 [login/google] Google action hit');
 
     const { data, error } = await locals.supabase.auth.signInWithOAuth({
-      provider: 'google'
-      // options: { redirectTo: 'http://localhost:5173/settings' } // optional
+      provider: 'google',
+      options: { redirectTo: 'https://www.boardgamelibrary.com/' } // optional
     });
 
     if (error) {
