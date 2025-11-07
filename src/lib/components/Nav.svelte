@@ -359,7 +359,8 @@
                     <img
                       src={profileImageUrl || '/images/account.svg'}
                       alt=""
-                      class="h-8 w-8 brightness-0"
+                      class={`h-8 w-8
+                        ${profileImageUrl ? 'rounded-full object-cover' : 'brightness-0'}`}
                       aria-hidden="true"
                     />
                     <span>{link.label}</span>
