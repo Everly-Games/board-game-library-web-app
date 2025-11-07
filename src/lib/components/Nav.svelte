@@ -21,6 +21,20 @@
   let isLoggedIn = false;
   $: isLoggedIn = Boolean($page.data?.user);
 
+  let profileImageUrl: string | null = null;
+
+  $: {
+    const user = $page.data?.user;
+    const profile = $page.data?.profile;
+    const meta: any = user?.user_metadata ?? {};
+
+    profileImageUrl =
+      profile?.avatar_url ??
+      meta.avatar_url ??
+      meta.picture ??
+      null;
+  }
+
   const isActive = (href: string, current: string) => {
     // Top Games: treat "/" as Top when logged OUT
     if (href === '/top') {
@@ -288,7 +302,7 @@
             class="h-full w-full bg-no-repeat bg-center bg-contain transition-all duration-300
                    focus:outline-none focus:border-fancy-blue-dark
                    focus:ring-2 focus:ring-fancy-blue-dark/30"
-            style="background-image: url('/images/account.svg');"
+                   style={`background-image: url('${profileImageUrl || '/images/account.svg'}');`}
           ></div>
         </a>
 
@@ -359,7 +373,7 @@
                     aria-current={isActive('/profile', $page.url.pathname) ? 'page' : undefined}
                   >
                     <img
-                      src="/images/account.svg"
+                      src={profileImageUrl || '/images/account.svg'}
                       alt=""
                       class="h-8 w-8 brightness-0"
                       aria-hidden="true"

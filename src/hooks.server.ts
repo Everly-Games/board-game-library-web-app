@@ -37,6 +37,7 @@ export const handle: Handle = async ({ event, resolve }) => {
   // Expose Supabase client + session on locals
   event.locals.supabase = supabase;
   event.locals.session = session;
+  event.locals.user = session?.user ?? null;
 
   // Continue the normal SvelteKit request flow
   return resolve(event);
