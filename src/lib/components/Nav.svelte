@@ -302,12 +302,13 @@
                  max-[1225px]:hidden max-[1225px]:text-base"
           aria-label="Profile"
         >
-          <div
-            class="h-full w-full bg-no-repeat bg-center bg-contain transition-all duration-300
-                   focus:outline-none focus:border-fancy-blue-dark
-                   focus:ring-2 focus:ring-fancy-blue-dark/30"
-            style={`background-image: url('${profileImageUrl || '/images/account.svg'}');`}
-          ></div>
+        <div
+          class={`h-full w-full bg-no-repeat bg-center bg-contain transition-all duration-300
+                  focus:outline-none focus:border-fancy-blue-dark
+                  focus:ring-2 focus:ring-fancy-blue-dark/30
+                  ${profileImageUrl ? 'rounded-full bg-cover' : ''}`}
+          style={`background-image: url('${profileImageUrl || '/images/account.svg'}');`}
+        ></div>
         </a>
 
         <!-- Hamburger -->
