@@ -12,10 +12,39 @@
   <meta name="theme-color" content="#A8A397" />
 </svelte:head>
 
-<!-- Sticky header on all pages -->
-<Nav />
+<!-- Page wrapper -->
+<div class="flex min-h-screen flex-col">
+  <!-- Header -->
+  <Nav />
 
-<!-- Page content area -->
-<main class="min-h-[calc(100vh-4rem)]">
-  {@render children?.()}
-</main>
+  <!-- Main content grows -->
+  <main class="flex-1">
+    {@render children?.()}
+  </main>
+
+  <!-- Footer -->
+  <footer
+    class="flex items-center justify-center h-[72px] border-t border-dusty-hallway text-blackcurrant text-center"
+  >
+    <div class="space-x-1">
+      &copy;
+      <a href="https://everlygames.com/" class="hover:opacity-70">
+        Everly Games LLC
+      </a>
+      •
+      <a
+        href="https://docs.boardgamelibrary.com/privacy-policy/"
+        class="hover:opacity-70"
+      >
+        Privacy
+      </a>
+      •
+      <a
+        href="https://docs.boardgamelibrary.com/terms/"
+        class="hover:opacity-70"
+      >
+        Terms
+      </a>
+    </div>
+  </footer>
+</div>
