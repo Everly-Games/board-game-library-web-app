@@ -1,17 +1,19 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { onMount } from 'svelte';
+  // import { onMount } from 'svelte';
 
   const links = [
-    { href: '/profile', label: 'Gaming Profile' },
+    { href: '/login', label: 'Gaming Profile' },
     { href: '/top', label: 'Top Games' },
     { href: '/trending', label: 'Trending Games' },
-    { href: '/community', label: 'Community' },
-    { href: '/library', label: 'My Library' },
-    { href: '/drop', label: 'Daily Drop' },
     { href: '/settings', label: 'Settings' },
-    { href: '/logout', label: 'Log Out' }
+    
   ];
+
+   // { href: '/community', label: 'Community' },
+   // { href: '/library', label: 'My Library' },
+   // { href: '/drop', label: 'Daily Drop' },
+   // { href: '/logout', label: 'Log Out' }
 
   let open = false;
   let searchQuery = '';
@@ -54,7 +56,8 @@
     searchQuery = '';
   }
 
-  // Countdown logic
+  // Countdown logic (temporarily disabled)
+  /*
   let timer: ReturnType<typeof setInterval> | undefined;
 
   function getNextNoonET(): Date {
@@ -123,6 +126,7 @@
       if (timer) clearInterval(timer);
     };
   });
+  */
 </script>
 
 <header
@@ -193,6 +197,7 @@
             Trending Games
           </a>
 
+          <!--
           <a
             href="/community"
             class="nav-link relative pb-[2px] text-blackcurrant transition-colors border-b-4
@@ -205,7 +210,6 @@
             Community
           </a>
 
-          <!-- My Library now falls off later than Daily Drop -->
           <a
             href="/library"
             class="nav-link relative pb-[2px] text-blackcurrant transition-colors border-b-4
@@ -218,7 +222,6 @@
             My Library
           </a>
 
-          <!-- Daily Drop + Capsule Countdown (desktop) -->
           <div class="flex items-center gap-3 max-[1225px]:hidden">
             <a
               href="/drop"
@@ -241,6 +244,7 @@
               {countdown}
             </a>
           </div>
+          -->
         </nav>
       </div>
 
@@ -292,7 +296,7 @@
 
         <!-- Profile (desktop icon) -->
         <a
-          href="/profile"
+          href="/login"
           class="flex items-center h-[40px] w-[40px] max-[1055px]:h-[36px] max-[1055px]:w-[36px]
                  group relative shrink-0 transition-all duration-300
                  max-[1225px]:hidden max-[1225px]:text-base"
@@ -302,20 +306,20 @@
             class="h-full w-full bg-no-repeat bg-center bg-contain transition-all duration-300
                    focus:outline-none focus:border-fancy-blue-dark
                    focus:ring-2 focus:ring-fancy-blue-dark/30"
-                   style={`background-image: url('${profileImageUrl || '/images/account.svg'}');`}
+            style={`background-image: url('${profileImageUrl || '/images/account.svg'}');`}
           ></div>
         </a>
 
         <!-- Hamburger -->
-          <button
-            type="button"
-            class="hidden max-[1225px]:inline-flex items-center justify-center h-[42px] w-[42px]
-                    rounded-md text-blackcurrant leading-[0.9]
-                    hover:bg-blackcurrant/10 transition border border-blackcurrant"
-            aria-label="Toggle menu"
-            aria-expanded={open}
-            on:click={() => (open = !open)}
-          >
+        <button
+          type="button"
+          class="hidden max-[1225px]:inline-flex items-center justify-center h-[42px] w-[42px]
+                  rounded-md text-blackcurrant leading-[0.9]
+                  hover:bg-blackcurrant/10 transition border border-blackcurrant"
+          aria-label="Toggle menu"
+          aria-expanded={open}
+          on:click={() => (open = !open)}
+        >
           {#if open}
             <img src="/images/close.svg" alt="Close menu" class="h-[18px] w-[18px]" />
           {:else}
@@ -332,30 +336,9 @@
       <div class="mx-auto max-w-[1440px] px-4 py-3 flex flex-col gap-3">
         {#each links as link}
           {#if link.href === '/drop'}
-            <div class="flex items-center justify-between py-2">
-              <a
-                href={link.href}
-                class="py-2 text-base text-blackcurrant hover:text-blackcurrant transition-colors
-                       {isActive(link.href, $page.url.pathname)
-                         ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
-                         : ''}"
-                on:click={() => (open = false)}
-                aria-current={isActive(link.href, $page.url.pathname) ? 'page' : undefined}
-              >
-                {link.label}
-              </a>
-
-              <a
-                href="/drop"
-                class="px-3 py-[8px] text-xs font-medium rounded-full select-none font-mono leading-none
-                       bg-reading-chair-brown/15 text-dusty-hallway-very-dark"
-                aria-label="Time until the next Daily Drop"
-              >
-                {countdown}
-              </a>
-            </div>
+            <!-- Daily Drop mobile link & timer temporarily disabled -->
           {:else}
-            {#if link.href === '/profile'}
+            {#if link.href === '/login'}
               <!-- Profile + Settings pill -->
               <div class="py-2">
                 <div
@@ -364,13 +347,13 @@
                 >
                   <!-- Left: Gaming Profile -->
                   <a
-                    href="/profile"
+                    href="/login"
                     class="flex items-center gap-2 text-blackcurrant transition-colors
-                           {isActive('/profile', $page.url.pathname)
+                           {isActive('/login', $page.url.pathname)
                              ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
                              : ''}"
                     on:click={() => (open = false)}
-                    aria-current={isActive('/profile', $page.url.pathname) ? 'page' : undefined}
+                    aria-current={isActive('/login', $page.url.pathname) ? 'page' : undefined}
                   >
                     <img
                       src={profileImageUrl || '/images/account.svg'}
