@@ -5,9 +5,9 @@
 </svelte:head>
 <div class="bg-white flex flex-col items-center justify-center text-center py-16">
   <h1 class="text-4xl font-bold text-gray-900 mb-2">
-    Trendings Games
+    Board Game Library
   </h1>
-  <h2>Find the perfect game for any vibe.</h2>
+  <h2>TRENDING GAMES</h2>
   <br/>
 
   <style type="text/css">

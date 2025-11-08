@@ -166,7 +166,9 @@
             width="62"
             height="46"
           />
+          <h1>Board Game Library</h1>
         </a>
+        
 
         <!-- Desktop navigation -->
         <nav
