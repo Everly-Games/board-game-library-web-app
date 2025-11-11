@@ -3,7 +3,7 @@
   import { onMount } from 'svelte';
 
   const links = [
-    { href: '/login', label: 'Gaming Profile' },
+    { href: '/signin', label: 'Gaming Profile' },
     { href: '/discover/trending', label: 'Discover' },
     { href: '/settings', label: 'Settings' },
     { href: '/community', label: 'Community' },
@@ -19,7 +19,7 @@
   let isLoggedIn = false;
   $: isLoggedIn = Boolean($page.data?.user);
 
-  let profileImageUrl: string | null = null;
+  let profileImageUrl: string | null = $page.data?.user?.avatar_url ?? null;
 
   $: {
     const user = $page.data?.user;
@@ -104,7 +104,7 @@ const isActive = (
         <img
           src="/icon.svg"
           alt="Board Game Library Icon"
-          class="block sm:hidden w-[40px] h-[40px] transition-all duration-300"
+          class="block sm:hidden w-[46px] h-[40px] transition-all duration-300"
         />
         </a>
         
@@ -118,7 +118,7 @@ const isActive = (
           <a
             href="/discover/trending"
             class="nav-link px-4 py-1 transition-colors text-blackcurrant border
-                   rounded-[6px] hover:border-blackcurrant hover:text-blackcurrant
+                   hover:border-blackcurrant hover:text-blackcurrant
                    {isActive(['/discover'], $page.url.pathname)
                      ? 'border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
@@ -131,7 +131,7 @@ const isActive = (
           <a
             href="/community/feed"
             class="nav-link px-4 py-1 transition-colors text-blackcurrant border
-                  rounded-[6px] hover:border-blackcurrant hover:text-blackcurrant
+                  hover:border-blackcurrant hover:text-blackcurrant
                   {isActive(['/community'], $page.url.pathname)
                     ? 'border-blackcurrant text-blackcurrant'
                     : 'border-transparent'}
@@ -143,7 +143,7 @@ const isActive = (
           <a
             href="/drop"
             class="nav-link px-4 py-1 transition-colors text-blackcurrant border
-                    rounded-[6px] hover:border-blackcurrant hover:text-blackcurrant
+                    hover:border-blackcurrant hover:text-blackcurrant
                     {isActive(['/drop'], $page.url.pathname)
                       ? 'border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
@@ -155,7 +155,7 @@ const isActive = (
           <a
             href="/library"
             class="nav-link px-4 py-1 transition-colors text-blackcurrant border
-                   rounded-[6px] hover:border-blackcurrant hover:text-blackcurrant
+                   hover:border-blackcurrant hover:text-blackcurrant
                    {isActive(['/library'], $page.url.pathname)
                      ? 'border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
@@ -171,7 +171,7 @@ const isActive = (
 
       <!-- Right: Search + Profile + Hamburger -->
       <div
-        class="flex items-center gap-5 h-[40px] max-[875px]:h-[42px]
+        class="flex items-center gap-5 h-[40px] max-[875px]:h-[40px]
                max-[875px]:gap-3 transition-transform duration-300
                max-[875px]:flex-1 max-[875px]:min-w-0"
       >
@@ -216,11 +216,12 @@ const isActive = (
         </div>
 
         <!-- Profile (desktop icon) -->
+        {#if isLoggedIn}
         <a
           href="/profile"
-          class="flex items-center h-[40px] w-[40px] max-[1055px]:h-[36px] max-[1055px]:w-[36px]
+          class="flex items-center h-[40px] w-[40px] max-[1150px]:h-[40px] 
                  group relative shrink-0 transition-all duration-300
-                 max-[1225px]:hidden max-[1225px]:text-base"
+                 max-[1100px]:hidden max-[1100]:text-base"
           aria-label="Profile"
         >
         <div
@@ -231,11 +232,17 @@ const isActive = (
           style={`background-image: url('${profileImageUrl || '/images/account.svg'}');`}
         ></div>
         </a>
+        {:else}
+        <!-- Sign In button for logged-out users -->
+        <a href="/signin" class="ml-2 px-6 py-2.5 rounded-2xl text-sm font-medium bg-action-blue text-white hover:bg-fancy-blue-dark transition max-[1150px]:hidden">
+          Sign In
+        </a>
+        {/if}
 
         <!-- Hamburger -->
         <button
           type="button"
-          class="hidden max-[1225px]:inline-flex items-center justify-center h-[42px] w-[42px]
+          class="hidden max-[1150px]:inline-flex items-center justify-center h-[40px] w-[42px]
                   rounded-md text-blackcurrant leading-[0.9]
                   hover:bg-blackcurrant/10 transition border border-blackcurrant"
           aria-label="Toggle menu"
@@ -257,7 +264,7 @@ const isActive = (
     <div style="background: var(--color-navbar-light);">
       <div class="mx-auto max-w-[1440px] px-4 py-3 flex flex-col gap-3">
       {#each links as link}
-        {#if link.href === '/login'}
+        {#if link.href === '/signin'}
           <!-- Profile + Settings pill -->
           <div class="py-2">
             <div

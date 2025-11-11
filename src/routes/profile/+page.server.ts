@@ -6,7 +6,7 @@ export const load: PageServerLoad = async ({ locals }) => {
   const user = locals.user; // adjust this depending on your auth setup
 
   if (!user) {
-    throw redirect(302, '/login');
+    throw redirect(302, '/signin');
   }
 
   return { user };

@@ -1,4 +1,4 @@
-// src/routes/login/+page.server.ts
+// src/routes/signin/+page.server.ts
 import type { Actions, PageServerLoad } from './$types';
 import { redirect, fail } from '@sveltejs/kit';
 
@@ -21,8 +21,8 @@ export const load: PageServerLoad = async ({ locals, url }) => {
 };
 
 export const actions: Actions = {
-  // Email/password login (named action: "login")
-  login: async ({ request, locals, url }) => {
+  // Email/password signin (named action: "signin")
+  signin: async ({ request, locals, url }) => {
     const form = await request.formData();
 
     const email = (form.get('email') ?? '').toString().trim();
@@ -45,15 +45,15 @@ export const actions: Actions = {
     throw redirect(302, next);
   },
 
-  // Google login (named action: "google")
+  // Google signin (named action: "google")
   google: async ({ locals, url }) => {
-    console.log('🔵 [login/google] Google action hit');
+    console.log('🔵 [signin/google] Google action hit');
 
     // Where do we ultimately want to land? (home by default)
     const next = getSafeRedirect(url, '/');
     const redirectTo = `${url.origin}/auth/callback?redirectTo=${encodeURIComponent(next)}`;
 
-    console.log('🌐 [login/google] Using redirectTo:', redirectTo);
+    console.log('🌐 [signin/google] Using redirectTo:', redirectTo);
 
     const { data, error } = await locals.supabase.auth.signInWithOAuth({
       provider: 'google',
@@ -61,16 +61,16 @@ export const actions: Actions = {
     });
 
     if (error) {
-      console.error('🔴 [login/google] Supabase OAuth error:', error);
+      console.error('🔴 [signin/google] Supabase OAuth error:', error);
       return fail(400, { error: error.message });
     }
 
     if (!data?.url) {
-      console.error('🔴 [login/google] No redirect URL from Supabase OAuth');
+      console.error('🔴 [signin/google] No redirect URL from Supabase OAuth');
       return fail(500, { error: 'Could not start Google sign-in.' });
     }
 
-    console.log('🟢 [login/google] Redirecting to:', data.url);
+    console.log('🟢 [signin/google] Redirecting to:', data.url);
     throw redirect(302, data.url);
   }
 };

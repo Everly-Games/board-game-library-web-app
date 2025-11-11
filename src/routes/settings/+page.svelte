@@ -146,5 +146,5 @@
     </button>
   </form>
 
-  <a href="/logout">Log out</a>
+  <a href="/signout">Sign out</a>
 </section>

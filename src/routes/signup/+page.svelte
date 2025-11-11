@@ -86,6 +86,6 @@
 
   <p class="text-xs text-gray-600">
     Already have an account?
-    <a href="/login" class="underline">Log in</a>
+    <a href="/signin" class="underline">Sign in</a>
   </p>
 </section>

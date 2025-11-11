@@ -3,18 +3,18 @@
 </script>
 
 <svelte:head>
-  <title>Log In • Board Game Library</title>
+  <title>Sign in • Board Game Library</title>
 </svelte:head>
 
 <section class="max-w-md mx-auto px-4 py-8 space-y-6">
-  <h1 class="text-2xl font-semibold mb-2">Log in</h1>
+  <h1 class="text-2xl font-semibold mb-2">Sign in</h1>
 
   {#if form?.error}
     <p class="text-sm text-red-600 mb-2">{form.error}</p>
   {/if}
 
-  <!-- Email/password login → named action "login" -->
-  <form method="POST" action="?/login" class="space-y-4">
+  <!-- Email/password signin → named action "signin" -->
+  <form method="POST" action="?/signin" class="space-y-4">
     <div>
       <label class="block text-sm font-medium mb-1" for="email">Email</label>
       <input
@@ -43,7 +43,7 @@
       type="submit"
       class="w-full mt-2 inline-flex justify-center items-center rounded-full bg-black text-white px-5 py-2 text-sm font-medium hover:bg-gray-900"
     >
-      Log in
+      Sign in
     </button>
   </form>
 

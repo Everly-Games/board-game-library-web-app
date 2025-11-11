@@ -8,7 +8,7 @@ export const load: PageServerLoad = async ({ locals }) => {
   const { session, supabase } = locals;
 
   if (!session) {
-    throw redirect(302, '/login');
+    throw redirect(302, '/signin');
   }
 
   console.log('Session user:', locals.session?.user?.email);
@@ -49,7 +49,7 @@ export const actions: Actions = {
     const { session, supabase } = locals;
 
     if (!session) {
-      throw redirect(302, '/login');
+      throw redirect(302, '/signin');
     }
 
     const form = await request.formData();

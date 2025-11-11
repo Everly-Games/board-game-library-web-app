@@ -59,7 +59,7 @@ export const actions: Actions = {
     };
   },
 
-  // Google signup/login
+  // Google signup/signin
   google: async ({ locals, url }) => {
     console.log('🔵 [signup/google] Google action hit');
 

@@ -21,6 +21,7 @@
 
 /* 1) Design tokens go in @theme */
 @theme {
+  --color-action-blue: #0A7997;
   --color-dusty-hallway: #d1cfc7;
   --color-dusty-hallway-dark: #a8a397;
   --color-dusty-hallway-very-dark: #514d43;

@@ -17,14 +17,14 @@ export const GET: RequestHandler = async ({ url, locals }) => {
 
   if (!code) {
     console.error('🔴 [auth/callback] Missing "code" in URL');
-    throw redirect(302, '/login');
+    throw redirect(302, '/signin');
   }
 
   const { data, error } = await locals.supabase.auth.exchangeCodeForSession(code);
 
   if (error) {
     console.error('🔴 [auth/callback] exchangeCodeForSession error:', error);
-    throw redirect(302, '/login?error=oauth');
+    throw redirect(302, '/signin?error=oauth');
   }
 
   console.log('🟢 [auth/callback] Session created for:', data.session?.user?.email);
