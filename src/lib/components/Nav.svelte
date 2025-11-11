@@ -313,11 +313,11 @@
     </div>
   {/if}
 </header>
-<!-- Subnav-->
+<!-- Subnav -->
 {#if isActive(['/top', '/trending'], $page.url.pathname)}
 <header
   class="sticky top-0 z-50 relative text-blackcurrant not-prose transition-all duration-300
-         h-[60px] max-[1055px]:h-[71px]"
+         h-[60px] max-[1055px]:h-[50px]"
   style="
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   "
@@ -338,7 +338,7 @@
     <a
       href="/trending"
       class="relative px-4 py-1 text-blackcurrant transition-colors
-             after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px]
+             after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px] max-[1055px]:after:bottom-[-12px]
              after:h-[6px] after:bg-blackcurrant after:transition-all
              {isActive(['/trending'], $page.url.pathname)
                ? 'after:opacity-100'
@@ -350,7 +350,7 @@
     <a
       href="/top"
       class="relative px-4 py-1 text-blackcurrant transition-colors
-             after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px]
+             after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px] max-[1055px]:after:bottom-[-12px]
              after:h-[6px] after:bg-blackcurrant after:transition-all
              {isActive(['/top'], $page.url.pathname)
                ? 'after:opacity-100'
