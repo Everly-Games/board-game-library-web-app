@@ -95,7 +95,7 @@
         <!-- Desktop navigation -->
         <nav
           class="flex items-center gap-2 max-[1055px]:gap-2 text-lg max-[1055px]:text-base
-                 font-medium pt-[2px] transition-all duration-300"
+                 font-normal pt-[2px] transition-all duration-300"
         >
 
           <a
