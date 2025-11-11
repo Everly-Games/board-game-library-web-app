@@ -217,13 +217,20 @@ const isActive = (
                  max-[1150]:hidden max-[1150]:text-base"
           aria-label="Profile"
         >
-        <div
-          class={`h-full w-full bg-no-repeat bg-center bg-contain transition-all duration-300
+        {#if profileImageUrl}
+          <div
+            class="h-full w-full rounded-full bg-cover bg-no-repeat bg-center bg-contain transition-all duration-300
                   focus:outline-none focus:border-fancy-blue-dark
-                  focus:ring-2 focus:ring-fancy-blue-dark/30
-                  ${profileImageUrl ? 'rounded-full bg-cover' : ''}`}
-          style={`background-image: url('${profileImageUrl || '/images/account.svg'}');`}
-        ></div>
+                  focus:ring-2 focus:ring-fancy-blue-dark/30"
+            style={`background-image: url('${profileImageUrl}');`}
+          />
+        {:else}
+          <img
+            src="/images/account.svg"
+            alt="Default Account"
+            class="h-full w-full object-contain transition-all duration-300"
+          />
+        {/if}
         </a>
         {:else}
         <!-- Sign In button for logged-out users -->
