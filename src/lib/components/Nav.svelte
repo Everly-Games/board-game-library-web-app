@@ -221,7 +221,7 @@ const isActive = (
           href="/profile"
           class="flex items-center h-[40px] w-[40px] max-[1150px]:h-[40px] 
                  group relative shrink-0 transition-all duration-300
-                 max-[1100px]:hidden max-[1100]:text-base"
+                 max-[1150]:hidden max-[1150]:text-base"
           aria-label="Profile"
         >
         <div
