@@ -218,7 +218,7 @@ const isActive = (
 
         <!-- Profile (desktop icon) -->
         <a
-          href="/login"
+          href="/profile"
           class="flex items-center h-[40px] w-[40px] max-[1055px]:h-[36px] max-[1055px]:w-[36px]
                  group relative shrink-0 transition-all duration-300
                  max-[1225px]:hidden max-[1225px]:text-base"

@@ -3,6 +3,6 @@
     Profile
   </h1>
   <p class="text-lg text-gray-600">
-    
+  <a href="/settings">Settings</a>
   </p>
 </div>
