@@ -4,12 +4,11 @@
 
   const links = [
     { href: '/login', label: 'Gaming Profile' },
-    { href: '/top', label: 'Top Games' },
     { href: '/trending', label: 'Discover' },
     { href: '/settings', label: 'Settings' },
     { href: '/community', label: 'Community' },
-    { href: '/library', label: 'My Library' },
     { href: '/drop', label: 'Daily Drop' },
+    { href: '/library', label: 'My Library' },
     { href: '/logout', label: 'Log Out' }
   ];
 
@@ -43,6 +42,17 @@
   function clearSearch() {
     searchQuery = '';
   }
+
+  onMount(() => {
+  const handleResize = () => {
+    if (window.innerWidth > 1225 && open) {
+      open = false;
+    }
+  };
+
+  window.addEventListener('resize', handleResize);
+  return () => window.removeEventListener('resize', handleResize);
+  });
 
 </script>
 
@@ -239,76 +249,61 @@
   {#if open}
     <div style="background: var(--color-navbar-light);">
       <div class="mx-auto max-w-[1440px] px-4 py-3 flex flex-col gap-3">
-        {#each links as link}
-          {#if link.href === '/drop'}
-            <!-- Daily Drop mobile link & timer temporarily disabled -->
-          {:else}
-            {#if link.href === '/login'}
-              <!-- Profile + Settings pill -->
-              <div class="py-2">
-                <div
-                  class="flex items-center justify-between gap-4 px-5 py-4 rounded-[5px]
-                         bg-dusty-hallway/50 border border-dusty-hallway-dark"
-                >
-                  <!-- Left: Gaming Profile -->
-                  <a
-                    href="/login"
-                    class="flex items-center gap-2 text-blackcurrant transition-colors
-                           {isActive(['/login'], $page.url.pathname)
-                             ? 'underline underline-offset-4 decoration-blackcurrant/30'
-                             : ''}"
-                    on:click={() => (open = false)}
-                    aria-current={isActive(['/login'], $page.url.pathname) ? 'page' : undefined}
-                  >
-                    <img
-                      src={profileImageUrl || '/images/account.svg'}
-                      alt=""
-                      class={`h-8 w-8
-                        ${profileImageUrl ? 'rounded-full object-cover' : 'brightness-0'}`}
-                      aria-hidden="true"
-                    />
-                    <span>{link.label}</span>
-                  </a>
-
-                  <!-- Right: Settings -->
-                  <a
-                    href="/settings"
-                    class="flex items-center gap-2 text-sm text-blackcurrant justify-end transition-colors
-                           {isActive(['/settings'], $page.url.pathname)
-                             ? 'underline underline-offset-4 decoration-blackcurrant/30'
-                             : ''}"
-                    on:click={() => (open = false)}
-                    aria-current={isActive(['/settings'], $page.url.pathname) ? 'page' : undefined}
-                  >
-                    <img
-                      src="/images/settings.svg"
-                      alt=""
-                      class="h-5 w-5 brightness-0"
-                      aria-hidden="true"
-                    />
-                    <span>Settings</span>
-                  </a>
-                </div>
-              </div>
-
-            {:else if link.href === '/settings'}
-              <!-- Settings is rendered inside the Profile pill above, so skip here -->
-
-            {:else}
+      {#each links as link}
+        {#if link.href === '/login'}
+          <!-- Profile + Settings pill -->
+          <div class="py-2">
+            <div
+              class="flex items-center justify-between gap-4 px-5 py-4 rounded-[5px]
+                    bg-dusty-hallway/50 border border-dusty-hallway-dark"
+            >
+              <!-- Left: Gaming Profile -->
               <a
-                href={link.href}
-                class="py-2 text-base text-blackcurrant hover:text-blackcurrant transition-colors
-                       {isActive([link.href], $page.url.pathname)
-                         ? 'underline underline-offset-4 decoration-blackcurrant/30'
-                         : ''}"
+                href="/login"
+                class="flex items-center gap-2 text-blackcurrant transition-colors
+                      {isActive(['/login'], $page.url.pathname)
+                        ? 'underline underline-offset-4 decoration-blackcurrant/30'
+                        : ''}"
                 on:click={() => (open = false)}
-                aria-current={isActive([link.href], $page.url.pathname) ? 'page' : undefined}
               >
-                {link.label}
+                <img
+                  src={profileImageUrl || '/images/account.svg'}
+                  alt=""
+                  class={`h-8 w-8 ${profileImageUrl ? 'rounded-full object-cover' : 'brightness-0'}`}
+                />
+                <span>{link.label}</span>
               </a>
-            {/if}
-          {/if}
-        {/each}
+
+              <!-- Right: Settings -->
+              <a
+                href="/settings"
+                class="flex items-center gap-2 text-sm text-blackcurrant justify-end transition-colors
+                      {isActive(['/settings'], $page.url.pathname)
+                        ? 'underline underline-offset-4 decoration-blackcurrant/30'
+                        : ''}"
+                on:click={() => (open = false)}
+              >
+                <img src="/images/settings.svg" alt="" class="h-5 w-5 brightness-0" />
+                <span>Settings</span>
+              </a>
+            </div>
+          </div>
+        {:else if link.href === '/settings'}
+          <!-- Skip settings because it’s already inside the pill -->
+        {:else}
+          <a
+            href={link.href}
+            class="py-2 text-base text-blackcurrant hover:text-blackcurrant transition-colors
+                  {isActive([link.href], $page.url.pathname)
+                    ? 'underline underline-offset-4 decoration-blackcurrant/30'
+                    : ''}"
+            on:click={() => (open = false)}
+          >
+            {link.label}
+          </a>
+        {/if}
+      {/each}
+
       </div>
     </div>
   {/if}
