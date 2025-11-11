@@ -35,9 +35,9 @@
       null;
   }
 
-  const isActive = (href: string, current: string) => {
+  const isActive = (paths: string[], current: string) => {
     // Everyone else: exact match OR "section" match (e.g. /library, /library/123)
-    return current === href || current.startsWith(href + '/');
+    return paths.some((p) => current.startsWith(p));
   };
 
   function clearSearch() {
@@ -102,7 +102,7 @@
             href="/trending"
             class="nav-link px-4 py-1 transition-colors text-blackcurrant border
                    rounded-[6px] hover:border-blackcurrant hover:text-blackcurrant
-                   {isActive('/trending', $page.url.pathname)
+                   {isActive(['/trending', '/top'], $page.url.pathname)
                      ? 'border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
                    max-[850px]:hidden max-[850px]:text-base"
@@ -115,7 +115,7 @@
             href="/community"
             class="nav-link px-4 py-1 transition-colors text-blackcurrant border
                   rounded-[6px] hover:border-blackcurrant hover:text-blackcurrant
-                  {isActive('/community', $page.url.pathname)
+                  {isActive(['/community'], $page.url.pathname)
                     ? 'border-blackcurrant text-blackcurrant'
                     : 'border-transparent'}
                    max-[850px]:hidden max-[900px]:text-base"
@@ -127,7 +127,7 @@
             href="/drop"
             class="nav-link px-4 py-1 transition-colors text-blackcurrant border
                     rounded-[6px] hover:border-blackcurrant hover:text-blackcurrant
-                    {isActive('/drop', $page.url.pathname)
+                    {isActive(['/drop'], $page.url.pathname)
                       ? 'border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
                     max-[900px]:hidden max-[1100px]:text-base"
@@ -139,7 +139,7 @@
             href="/library"
             class="nav-link px-4 py-1 transition-colors text-blackcurrant border
                    rounded-[6px] hover:border-blackcurrant hover:text-blackcurrant
-                   {isActive('/library', $page.url.pathname)
+                   {isActive(['/library'], $page.url.pathname)
                      ? 'border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
                    max-[1100px]:hidden max-[1100px]:text-base"
@@ -254,11 +254,11 @@
                   <a
                     href="/login"
                     class="flex items-center gap-2 text-blackcurrant transition-colors
-                           {isActive('/login', $page.url.pathname)
+                           {isActive(['/login'], $page.url.pathname)
                              ? 'underline underline-offset-4 decoration-blackcurrant/30'
                              : ''}"
                     on:click={() => (open = false)}
-                    aria-current={isActive('/login', $page.url.pathname) ? 'page' : undefined}
+                    aria-current={isActive(['/login'], $page.url.pathname) ? 'page' : undefined}
                   >
                     <img
                       src={profileImageUrl || '/images/account.svg'}
@@ -274,11 +274,11 @@
                   <a
                     href="/settings"
                     class="flex items-center gap-2 text-sm text-blackcurrant justify-end transition-colors
-                           {isActive('/settings', $page.url.pathname)
+                           {isActive(['/settings'], $page.url.pathname)
                              ? 'underline underline-offset-4 decoration-blackcurrant/30'
                              : ''}"
                     on:click={() => (open = false)}
-                    aria-current={isActive('/settings', $page.url.pathname) ? 'page' : undefined}
+                    aria-current={isActive(['/settings'], $page.url.pathname) ? 'page' : undefined}
                   >
                     <img
                       src="/images/settings.svg"
@@ -298,11 +298,11 @@
               <a
                 href={link.href}
                 class="py-2 text-base text-blackcurrant hover:text-blackcurrant transition-colors
-                       {isActive(link.href, $page.url.pathname)
+                       {isActive([link.href], $page.url.pathname)
                          ? 'underline underline-offset-4 decoration-blackcurrant/30'
                          : ''}"
                 on:click={() => (open = false)}
-                aria-current={isActive(link.href, $page.url.pathname) ? 'page' : undefined}
+                aria-current={isActive([link.href], $page.url.pathname) ? 'page' : undefined}
               >
                 {link.label}
               </a>
@@ -313,3 +313,59 @@
     </div>
   {/if}
 </header>
+<!-- Subnav-->
+{#if isActive(['/top', '/trending'], $page.url.pathname)}
+<header
+  class="sticky top-0 z-50 relative text-blackcurrant not-prose transition-all duration-300
+         h-[60px] max-[1055px]:h-[71px]"
+  style="
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  "
+>
+
+  <!-- Inner container -->
+  <div
+    class="mx-auto max-w-[1440px] text-sm px-4 sm:px-6 lg:px-8 h-full
+           pt-[10px] max-[1055px]:pt-[5px] transition-all duration-300"
+  >
+<div class="w-full flex justify-left">
+      <!-- Left: logo + links -->
+      <div class="flex items-center gap-0 sm:gap-0 md:gap-10">
+      
+
+  {#if isActive(['/top', '/trending'], $page.url.pathname)}
+  <nav class="flex gap-4 text-base font-normal pt-[2px] relative">
+    <a
+      href="/trending"
+      class="relative px-4 py-1 text-blackcurrant transition-colors
+             after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px]
+             after:h-[6px] after:bg-blackcurrant after:transition-all
+             {isActive(['/trending'], $page.url.pathname)
+               ? 'after:opacity-100'
+               : 'after:opacity-0 hover:after:opacity-40'}"
+    >
+      Trending Games
+    </a>
+
+    <a
+      href="/top"
+      class="relative px-4 py-1 text-blackcurrant transition-colors
+             after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px]
+             after:h-[6px] after:bg-blackcurrant after:transition-all
+             {isActive(['/top'], $page.url.pathname)
+               ? 'after:opacity-100'
+               : 'after:opacity-0 hover:after:opacity-40'}"
+    >
+      Top 10 Lists
+    </a>
+  </nav>
+{/if}
+
+
+        
+      </div>
+
+</header>
+
+<hr class="h-px bg-dusty-hallway border-0">
+{/if}
