@@ -4,7 +4,7 @@
 
   const links = [
     { href: '/login', label: 'Gaming Profile' },
-    { href: '/trending', label: 'Discover' },
+    { href: '/discover/trending', label: 'Discover' },
     { href: '/settings', label: 'Settings' },
     { href: '/community', label: 'Community' },
     { href: '/drop', label: 'Daily Drop' },
@@ -109,10 +109,10 @@
         >
 
           <a
-            href="/trending"
+            href="/discover/trending"
             class="nav-link px-4 py-1 transition-colors text-blackcurrant border
                    rounded-[6px] hover:border-blackcurrant hover:text-blackcurrant
-                   {isActive(['/trending', '/top'], $page.url.pathname)
+                   {isActive(['/discover/trending', '/discover/top'], $page.url.pathname)
                      ? 'border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
                    max-[850px]:hidden max-[850px]:text-base"
@@ -122,10 +122,10 @@
 
           
           <a
-            href="/community"
+            href="/community/feed"
             class="nav-link px-4 py-1 transition-colors text-blackcurrant border
                   rounded-[6px] hover:border-blackcurrant hover:text-blackcurrant
-                  {isActive(['/community'], $page.url.pathname)
+                  {isActive(['/community/feed', '/community/spotlight', '/community/following'], $page.url.pathname)
                     ? 'border-blackcurrant text-blackcurrant'
                     : 'border-transparent'}
                    max-[850px]:hidden max-[900px]:text-base"
@@ -309,7 +309,7 @@
   {/if}
 </header>
 <!-- Subnav -->
-{#if isActive(['/top', '/trending'], $page.url.pathname) && !open}
+{#if isActive(['/discover/top', '/discover/trending', '/community', '/community/feed'], $page.url.pathname) && !open}
 <header
   class="sticky top-0 z-50 relative text-blackcurrant not-prose transition-all duration-300
          h-[60px] max-[1055px]:h-[50px]"
@@ -323,42 +323,86 @@
     class="mx-auto max-w-[1440px] text-sm px-4 sm:px-6 lg:px-8 h-full
            pt-[10px] max-[1055px]:pt-[5px] transition-all duration-300"
   >
-<div class="w-full flex justify-left">
+  <div class="w-full flex justify-left">
       <!-- Left: logo + links -->
       <div class="flex items-center gap-0 sm:gap-0 md:gap-10">
       
 
-  {#if isActive(['/top', '/trending'], $page.url.pathname)}
+  
   <nav class="flex gap-4 text-base font-normal pt-[2px] relative">
-    <a
-      href="/trending"
-      class="relative px-4 py-1 text-blackcurrant transition-colors
-             after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px] max-[1055px]:after:bottom-[-12px]
-             after:h-[6px] after:bg-blackcurrant after:transition-all
-             {isActive(['/trending'], $page.url.pathname)
-               ? 'after:opacity-100'
-               : 'after:opacity-0 hover:after:opacity-40'}"
-    >
-      Trending Games
-    </a>
+  {#if isActive(['/discover/top', '/discover/trending'], $page.url.pathname)}
 
-    <a
-      href="/top"
-      class="relative px-4 py-1 text-blackcurrant transition-colors
-             after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px] max-[1055px]:after:bottom-[-12px]
-             after:h-[6px] after:bg-blackcurrant after:transition-all
-             {isActive(['/top'], $page.url.pathname)
-               ? 'after:opacity-100'
-               : 'after:opacity-0 hover:after:opacity-40'}"
-    >
-      Top 10 Lists
-    </a>
+      <!-- discover -->
+      <a
+        href="/discover/trending"
+        class="relative px-4 py-1 text-blackcurrant transition-colors
+              after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px] max-[1055px]:after:bottom-[-12px]
+              after:h-[6px] after:bg-blackcurrant after:transition-all
+              {isActive(['/discover/trending'], $page.url.pathname)
+                ? 'after:opacity-100'
+                : 'after:opacity-0 hover:after:opacity-40'}"
+      >
+        Trending Games
+      </a>
+
+      <a
+        href="/discover/top"
+        class="relative px-4 py-1 text-blackcurrant transition-colors
+              after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px] max-[1055px]:after:bottom-[-12px]
+              after:h-[6px] after:bg-blackcurrant after:transition-all
+              {isActive(['/discover/top'], $page.url.pathname)
+                ? 'after:opacity-100'
+                : 'after:opacity-0 hover:after:opacity-40'}"
+      >
+        Top 10 Lists
+      </a>
+
+      {/if}
+      
+
+      <!-- community -->
+
+      {#if isActive(['/community','/community/feed'], $page.url.pathname)}
+      <a
+        href="/community/feed"
+        class="relative px-4 py-1 text-blackcurrant transition-colors
+              after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px] max-[1055px]:after:bottom-[-12px]
+              after:h-[6px] after:bg-blackcurrant after:transition-all
+              {isActive(['/community/feed'], $page.url.pathname)
+                ? 'after:opacity-100'
+                : 'after:opacity-0 hover:after:opacity-40'}"
+      >
+        Feed
+      </a>
+
+      <a
+        href="/community/following"
+        class="relative px-4 py-1 text-blackcurrant transition-colors
+              after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px] max-[1055px]:after:bottom-[-12px]
+              after:h-[6px] after:bg-blackcurrant after:transition-all
+              {isActive(['/community/following'], $page.url.pathname)
+                ? 'after:opacity-100'
+                : 'after:opacity-0 hover:after:opacity-40'}"
+      >
+        Following
+      </a>
+
+      <a
+        href="/community/spotlight"
+        class="relative px-4 py-1 text-blackcurrant transition-colors
+              after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px] max-[1055px]:after:bottom-[-12px]
+              after:h-[6px] after:bg-blackcurrant after:transition-all
+              {isActive(['/community/spotlight'], $page.url.pathname)
+                ? 'after:opacity-100'
+                : 'after:opacity-0 hover:after:opacity-40'}"
+      >
+        Spotlight
+      </a>
+
+      {/if}
   </nav>
-{/if}
-
-
-        
-      </div>
+  
+  </div>
 
 </header>
 
