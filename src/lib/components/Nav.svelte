@@ -69,25 +69,32 @@
              transition-all duration-300"
     >
       <!-- Left: logo + links -->
-      <div class="flex items-center gap-0 sm:gap- md:gap-10">
+      <div class="flex items-center gap-0 sm:gap-0 md:gap-10">
         <!-- Brand (Home) -->
         <a
           href={'/trending'}
           class="flex items-center gap-2 text-xl max-[1055px]:text-lg
                  text-blackcurrant hover:text-blackcurrant transition-all duration-300"
         >
-      <img
-        src="/logo.svg"
-        alt="Board Game Library Logo"
-        class="w-[140px] min-w-[120px] max-w-[160px] transition-all duration-300"
-        style="height: auto"
-      />
+        <img
+          src="/logo.svg"
+          alt="Board Game Library Logo"
+          class="hidden sm:block w-[140px] min-w-[120px] max-w-[160px] transition-all duration-300"
+          style="height: auto"
+        />
+
+        <!-- Mobile icon (shows on small screens) -->
+        <img
+          src="/icon.svg"
+          alt="Board Game Library Icon"
+          class="block sm:hidden w-[40px] h-[40px] transition-all duration-300"
+        />
         </a>
         
 
         <!-- Desktop navigation -->
         <nav
-          class="flex items-center gap-2 max-[1055px]:gap-6 text-lg max-[1055px]:text-base
+          class="flex items-center gap-2 max-[1055px]:gap-2 text-lg max-[1055px]:text-base
                  font-medium pt-[2px] transition-all duration-300"
         >
 
@@ -98,7 +105,7 @@
                    {isActive('/trending', $page.url.pathname)
                      ? 'border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
-                   max-[650px]:hidden max-[900px]:text-base"
+                   max-[850px]:hidden max-[850px]:text-base"
           >
             Discover
           </a>
@@ -111,7 +118,7 @@
                   {isActive('/community', $page.url.pathname)
                     ? 'border-blackcurrant text-blackcurrant'
                     : 'border-transparent'}
-                   max-[800px]:hidden max-[800px]:text-base"
+                   max-[850px]:hidden max-[900px]:text-base"
           >
             Community
           </a>
@@ -123,7 +130,7 @@
                     {isActive('/drop', $page.url.pathname)
                       ? 'border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
-                    max-[1225px]:text-base"
+                    max-[900px]:hidden max-[1100px]:text-base"
           >
             Daily Drop
           </a>
@@ -135,7 +142,7 @@
                    {isActive('/library', $page.url.pathname)
                      ? 'border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
-                   max-[950px]:hidden max-[950px]:text-base"
+                   max-[1100px]:hidden max-[1100px]:text-base"
           >
             My Library
           </a>
