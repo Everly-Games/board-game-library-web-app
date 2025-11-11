@@ -314,7 +314,7 @@
   {/if}
 </header>
 <!-- Subnav -->
-{#if isActive(['/top', '/trending'], $page.url.pathname)}
+{#if isActive(['/top', '/trending'], $page.url.pathname) && !open}
 <header
   class="sticky top-0 z-50 relative text-blackcurrant not-prose transition-all duration-300
          h-[60px] max-[1055px]:h-[50px]"
