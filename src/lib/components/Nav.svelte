@@ -34,10 +34,18 @@
       null;
   }
 
-  const isActive = (paths: string[], current: string) => {
-    // Everyone else: exact match OR "section" match (e.g. /library, /library/123)
-    return paths.some((p) => current.startsWith(p));
-  };
+const isActive = (
+  paths: string[],
+  current: string,
+  options: { exact?: boolean } = {}
+) => {
+  return paths.some((p) => {
+    if (options.exact) {
+      return current === p;
+    }
+    return p === '/' ? current === '/' : current === p || current.startsWith(p + '/');
+  });
+};
 
   function clearSearch() {
     searchQuery = '';
@@ -112,7 +120,7 @@
             href="/discover/trending"
             class="nav-link px-4 py-1 transition-colors text-blackcurrant border
                    rounded-[6px] hover:border-blackcurrant hover:text-blackcurrant
-                   {isActive(['/discover/trending', '/discover/top'], $page.url.pathname)
+                   {isActive(['/discover'], $page.url.pathname)
                      ? 'border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
                    max-[850px]:hidden max-[850px]:text-base"
@@ -125,7 +133,7 @@
             href="/community/feed"
             class="nav-link px-4 py-1 transition-colors text-blackcurrant border
                   rounded-[6px] hover:border-blackcurrant hover:text-blackcurrant
-                  {isActive(['/community/feed', '/community/spotlight', '/community/following'], $page.url.pathname)
+                  {isActive(['/community'], $page.url.pathname)
                     ? 'border-blackcurrant text-blackcurrant'
                     : 'border-transparent'}
                    max-[850px]:hidden max-[900px]:text-base"
@@ -309,7 +317,7 @@
   {/if}
 </header>
 <!-- Subnav -->
-{#if isActive(['/discover/top', '/discover/trending', '/community', '/community/feed'], $page.url.pathname) && !open}
+{#if isActive(['/discover', '/community', '/library'], $page.url.pathname) && !open}
 <header
   class="sticky top-0 z-50 relative text-blackcurrant not-prose transition-all duration-300
          h-[60px] max-[1055px]:h-[50px]"
@@ -330,7 +338,7 @@
 
   
   <nav class="flex gap-4 text-base font-normal pt-[2px] relative">
-  {#if isActive(['/discover/top', '/discover/trending'], $page.url.pathname)}
+  {#if isActive(['/discover'], $page.url.pathname)}
 
       <!-- discover -->
       <a
@@ -362,7 +370,7 @@
 
       <!-- community -->
 
-      {#if isActive(['/community','/community/feed'], $page.url.pathname)}
+      {#if isActive(['/community'], $page.url.pathname)}
       <a
         href="/community/feed"
         class="relative px-4 py-1 text-blackcurrant transition-colors
@@ -376,15 +384,15 @@
       </a>
 
       <a
-        href="/community/following"
+        href="/community/friends"
         class="relative px-4 py-1 text-blackcurrant transition-colors
               after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px] max-[1055px]:after:bottom-[-12px]
               after:h-[6px] after:bg-blackcurrant after:transition-all
-              {isActive(['/community/following'], $page.url.pathname)
+              {isActive(['/community/friends'], $page.url.pathname)
                 ? 'after:opacity-100'
                 : 'after:opacity-0 hover:after:opacity-40'}"
       >
-        Following
+        Friends
       </a>
 
       <a
@@ -398,6 +406,62 @@
       >
         Spotlight
       </a>
+
+      <a
+        href="/community/my-activity"
+        class="relative px-4 py-1 text-blackcurrant transition-colors
+              after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px] max-[1055px]:after:bottom-[-12px]
+              after:h-[6px] after:bg-blackcurrant after:transition-all
+              {isActive(['/community/my-activity'], $page.url.pathname)
+                ? 'after:opacity-100'
+                : 'after:opacity-0 hover:after:opacity-40'}"
+      >
+        My Activity
+      </a>
+
+      {/if}
+
+      <!-- library -->
+
+      {#if isActive(['/library'], $page.url.pathname)}
+
+      <a
+        href="/library"
+        class="relative px-4 py-1 text-blackcurrant transition-colors
+              after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px] max-[1055px]:after:bottom-[-12px]
+              after:h-[6px] after:bg-blackcurrant after:transition-all
+              {isActive(['/library'], $page.url.pathname, { exact: true })
+                ? 'after:opacity-100'
+                : 'after:opacity-0 hover:after:opacity-40'}"
+      >
+        Library
+      </a>
+
+
+      <a
+        href="/library/wishlist"
+        class="relative px-4 py-1 text-blackcurrant transition-colors
+              after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px] max-[1055px]:after:bottom-[-12px]
+              after:h-[6px] after:bg-blackcurrant after:transition-all
+              {isActive(['/library/wishlist'], $page.url.pathname)
+                ? 'after:opacity-100'
+                : 'after:opacity-0 hover:after:opacity-40'}"
+      >
+        Wishlist
+      </a>
+
+            <a
+        href="/library/bookmarks"
+        class="relative px-4 py-1 text-blackcurrant transition-colors
+              after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[-17px] max-[1055px]:after:bottom-[-12px]
+              after:h-[6px] after:bg-blackcurrant after:transition-all
+              {isActive(['/library/bookmarks'], $page.url.pathname)
+                ? 'after:opacity-100'
+                : 'after:opacity-0 hover:after:opacity-40'}"
+      >
+        Bookmarks
+      </a>
+
 
       {/if}
   </nav>
