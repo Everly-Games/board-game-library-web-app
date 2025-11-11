@@ -9,7 +9,6 @@
     { href: '/community', label: 'Community' },
     { href: '/drop', label: 'Daily Drop' },
     { href: '/library', label: 'My Library' },
-    { href: '/logout', label: 'Log Out' }
   ];
 
   let open = false;

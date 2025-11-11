@@ -145,4 +145,6 @@
       Save changes
     </button>
   </form>
+
+  <a href="/logout">Log out</a>
 </section>
