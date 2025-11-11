@@ -72,7 +72,7 @@
       <div class="flex items-center gap-0 sm:gap-0 md:gap-10">
         <!-- Brand (Home) -->
         <a
-          href={'/trending'}
+          href={'/'}
           class="flex items-center gap-2 text-xl max-[1055px]:text-lg
                  text-blackcurrant hover:text-blackcurrant transition-all duration-300"
         >
