@@ -19,19 +19,12 @@
   let isLoggedIn = false;
   $: isLoggedIn = Boolean($page.data?.user);
 
-  let profileImageUrl: string | null = $page.data?.user?.avatar_url ?? null;
-
-  $: {
-    const user = $page.data?.user;
-    const profile = $page.data?.profile;
-    const meta: any = user?.user_metadata ?? {};
-
-    profileImageUrl =
-      profile?.avatar_url ??
-      meta.avatar_url ??
-      meta.picture ??
-      null;
-  }
+$: profileImageUrl = (
+  $page.data?.profile?.avatar_url ??
+  $page.data?.user?.user_metadata?.avatar_url ??
+  $page.data?.user?.user_metadata?.picture ??
+  null
+);
 
 const isActive = (
   paths: string[],
@@ -234,7 +227,7 @@ const isActive = (
         </a>
         {:else}
         <!-- Sign In button for logged-out users -->
-        <a href="/signin" class="ml-2 px-6 py-2.5 rounded-2xl text-sm font-medium bg-action-blue text-white hover:bg-fancy-blue-dark transition max-[1150px]:hidden">
+        <a href="/signin" class="ml-2 px-6 py-2.5 rounded-2xl text-sm font-medium bg-action-blue text-white hover:bg-fancy-blue-dark transition whitespace-nowrap max-[1150px]:hidden">
           Sign In
         </a>
         {/if}
