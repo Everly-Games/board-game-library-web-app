@@ -267,9 +267,9 @@ const isActive = (
             >
               <!-- Left: Gaming Profile -->
               <a
-                href="/login"
+                href="/profile"
                 class="flex items-center gap-2 text-blackcurrant transition-colors
-                      {isActive(['/login'], $page.url.pathname)
+                      {isActive(['/profile'], $page.url.pathname)
                         ? 'underline underline-offset-4 decoration-blackcurrant/30'
                         : ''}"
                 on:click={() => (open = false)}
