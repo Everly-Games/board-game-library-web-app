@@ -60,5 +60,6 @@
     position: relative;
     padding-bottom: 4px;
     white-space: nowrap;
+    font-weight: normal;
   }
 }

@@ -3,6 +3,5 @@
     Community
   </h1>
   <p class="text-lg text-gray-600">
-    Coming soon...
   </p>
 </div>

@@ -1,19 +1,17 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  // import { onMount } from 'svelte';
+  import { onMount } from 'svelte';
 
   const links = [
     { href: '/login', label: 'Gaming Profile' },
     { href: '/top', label: 'Top Games' },
-    { href: '/trending', label: 'Trending Games' },
+    { href: '/trending', label: 'Discover' },
     { href: '/settings', label: 'Settings' },
-    
+    { href: '/community', label: 'Community' },
+    { href: '/library', label: 'My Library' },
+    { href: '/drop', label: 'Daily Drop' },
+    { href: '/logout', label: 'Log Out' }
   ];
-
-   // { href: '/community', label: 'Community' },
-   // { href: '/library', label: 'My Library' },
-   // { href: '/drop', label: 'Daily Drop' },
-   // { href: '/logout', label: 'Log Out' }
 
   let open = false;
   let searchQuery = '';
@@ -38,16 +36,6 @@
   }
 
   const isActive = (href: string, current: string) => {
-    // Top Games: treat "/" as Top when logged OUT
-    if (href === '/top') {
-      return (!isLoggedIn && current === '/') || current === '/top';
-    }
-
-    // Trending Games: treat "/" as Trending when logged IN
-    if (href === '/trending') {
-      return (isLoggedIn && current === '/') || current === '/trending';
-    }
-
     // Everyone else: exact match OR "section" match (e.g. /library, /library/123)
     return current === href || current.startsWith(href + '/');
   };
@@ -56,77 +44,6 @@
     searchQuery = '';
   }
 
-  // Countdown logic (temporarily disabled)
-  /*
-  let timer: ReturnType<typeof setInterval> | undefined;
-
-  function getNextNoonET(): Date {
-    const nowUtcMs = Date.now();
-    const now = new Date(nowUtcMs);
-
-    const formatter = new Intl.DateTimeFormat('en-US', {
-      timeZone: 'America/New_York',
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false
-    });
-
-    const parts = formatter.formatToParts(now);
-    const get = (type: string) =>
-      Number(parts.find((p) => p.type === type)?.value ?? 0);
-
-    const year = get('year');
-    const month = get('month');
-    const day = get('day');
-    const hour = get('hour');
-    const minute = get('minute');
-    const second = get('second');
-
-    const estNow = new Date(Date.UTC(year, month - 1, day, hour, minute, second));
-    let targetEst = new Date(Date.UTC(year, month - 1, day, 12, 0, 0));
-    if (hour >= 12) {
-      targetEst = new Date(Date.UTC(year, month - 1, day + 1, 12, 0, 0));
-    }
-
-    const diffMs = targetEst.getTime() - estNow.getTime();
-    return new Date(nowUtcMs + diffMs);
-  }
-
-  function computeCountdown(): string {
-    const target = getNextNoonET();
-    const diff = target.getTime() - Date.now();
-
-    if (diff <= 0) {
-      return '0 minutes';
-    }
-
-    const totalMinutes = Math.floor(diff / (1000 * 60));
-
-    if (totalMinutes <= 120) {
-      return `${totalMinutes} minutes`;
-    } else {
-      const hours = Math.floor(totalMinutes / 60);
-      return `in ${hours} hour${hours === 1 ? '' : 's'}`;
-    }
-  }
-
-  let countdown: string = computeCountdown();
-
-  function updateCountdown() {
-    countdown = computeCountdown();
-  }
-
-  onMount(() => {
-    timer = setInterval(updateCountdown, 60 * 1000);
-    return () => {
-      if (timer) clearInterval(timer);
-    };
-  });
-  */
 </script>
 
 <header
@@ -152,101 +69,79 @@
              transition-all duration-300"
     >
       <!-- Left: logo + links -->
-      <div class="flex items-center gap-0 sm:gap-6 md:gap-6">
+      <div class="flex items-center gap-0 sm:gap- md:gap-10">
         <!-- Brand (Home) -->
         <a
-          href={isLoggedIn ? '/trending' : '/top'}
-          class="flex items-center gap-2 font-semibold text-xl max-[1055px]:text-lg
+          href={'/trending'}
+          class="flex items-center gap-2 text-xl max-[1055px]:text-lg
                  text-blackcurrant hover:text-blackcurrant transition-all duration-300"
         >
-          <img
-            src="/logo.svg"
-            alt="Board Game Library Logo"
-            class="h-9 max-[1055px]:h-8 w-auto -translate-y-[1px] transition-all duration-300"
-            width="62"
-            height="46"
-          />
-          <h1>Board Game Library</h1>
+      <img
+        src="/logo.svg"
+        alt="Board Game Library Logo"
+        class="w-[140px] min-w-[120px] max-w-[160px] transition-all duration-300"
+        style="height: auto"
+      />
         </a>
         
 
         <!-- Desktop navigation -->
         <nav
-          class="flex items-center gap-8 max-[1055px]:gap-6 text-lg max-[1055px]:text-base
+          class="flex items-center gap-2 max-[1055px]:gap-6 text-lg max-[1055px]:text-base
                  font-medium pt-[2px] transition-all duration-300"
         >
-          <a
-            href="/top"
-            class="nav-link relative pb-[2px] text-blackcurrant transition-colors border-b-4
-                   hover:border-blackcurrant hover:text-blackcurrant
-                   {isActive('/top', $page.url.pathname)
-                     ? 'font-semibold border-blackcurrant text-blackcurrant'
-                     : 'border-transparent'}
-                   max-[650px]:hidden max-[900px]:text-base"
-          >
-            Top Games
-          </a>
 
           <a
             href="/trending"
-            class="nav-link relative pb-[2px] text-blackcurrant transition-colors border-b-4
-                   hover:border-blackcurrant hover:text-blackcurrant
+            class="nav-link px-4 py-1 transition-colors text-blackcurrant border
+                   rounded-[6px] hover:border-blackcurrant hover:text-blackcurrant
                    {isActive('/trending', $page.url.pathname)
-                     ? 'font-semibold border-blackcurrant text-blackcurrant'
+                     ? 'border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
                    max-[650px]:hidden max-[900px]:text-base"
           >
-            Trending Games
+            Discover
           </a>
 
-          <!--
+          
           <a
             href="/community"
-            class="nav-link relative pb-[2px] text-blackcurrant transition-colors border-b-4
-                   hover:border-blackcurrant hover:text-blackcurrant
-                   {isActive('/community', $page.url.pathname)
-                     ? 'font-semibold border-blackcurrant text-blackcurrant'
-                     : 'border-transparent'}
+            class="nav-link px-4 py-1 transition-colors text-blackcurrant border
+                  rounded-[6px] hover:border-blackcurrant hover:text-blackcurrant
+                  {isActive('/community', $page.url.pathname)
+                    ? 'border-blackcurrant text-blackcurrant'
+                    : 'border-transparent'}
                    max-[800px]:hidden max-[800px]:text-base"
           >
             Community
           </a>
 
           <a
+            href="/drop"
+            class="nav-link px-4 py-1 transition-colors text-blackcurrant border
+                    rounded-[6px] hover:border-blackcurrant hover:text-blackcurrant
+                    {isActive('/drop', $page.url.pathname)
+                      ? 'border-blackcurrant text-blackcurrant'
+                     : 'border-transparent'}
+                    max-[1225px]:text-base"
+          >
+            Daily Drop
+          </a>
+
+          <a
             href="/library"
-            class="nav-link relative pb-[2px] text-blackcurrant transition-colors border-b-4
-                   hover:border-blackcurrant hover:text-blackcurrant
+            class="nav-link px-4 py-1 transition-colors text-blackcurrant border
+                   rounded-[6px] hover:border-blackcurrant hover:text-blackcurrant
                    {isActive('/library', $page.url.pathname)
-                     ? 'font-semibold border-blackcurrant text-blackcurrant'
+                     ? 'border-blackcurrant text-blackcurrant'
                      : 'border-transparent'}
                    max-[950px]:hidden max-[950px]:text-base"
           >
             My Library
           </a>
 
-          <div class="flex items-center gap-3 max-[1225px]:hidden">
-            <a
-              href="/drop"
-              class="nav-link relative pb-[2px] text-blackcurrant transition-colors border-b-4
-                     hover:border-blackcurrant hover:text-blackcurrant
-                     {isActive('/drop', $page.url.pathname)
-                       ? 'font-semibold border-blackcurrant text-blackcurrant'
-                       : 'border-transparent'}
-                     max-[1225px]:text-base"
-            >
-              Daily Drop
-            </a>
-
-            <a
-              href="/drop"
-              class="px-3 py-[8px] text-xs font-medium rounded-full select-none font-mono leading-none
-                     bg-reading-chair-brown/15 text-dusty-hallway-very-dark"
-              aria-label="Time until the next Daily Drop"
-            >
-              {countdown}
-            </a>
-          </div>
-          -->
+ 
+          
         </nav>
       </div>
 
@@ -353,7 +248,7 @@
                     href="/login"
                     class="flex items-center gap-2 text-blackcurrant transition-colors
                            {isActive('/login', $page.url.pathname)
-                             ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
+                             ? 'underline underline-offset-4 decoration-blackcurrant/30'
                              : ''}"
                     on:click={() => (open = false)}
                     aria-current={isActive('/login', $page.url.pathname) ? 'page' : undefined}
@@ -373,7 +268,7 @@
                     href="/settings"
                     class="flex items-center gap-2 text-sm text-blackcurrant justify-end transition-colors
                            {isActive('/settings', $page.url.pathname)
-                             ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
+                             ? 'underline underline-offset-4 decoration-blackcurrant/30'
                              : ''}"
                     on:click={() => (open = false)}
                     aria-current={isActive('/settings', $page.url.pathname) ? 'page' : undefined}
@@ -397,7 +292,7 @@
                 href={link.href}
                 class="py-2 text-base text-blackcurrant hover:text-blackcurrant transition-colors
                        {isActive(link.href, $page.url.pathname)
-                         ? 'font-semibold underline underline-offset-4 decoration-blackcurrant/30'
+                         ? 'underline underline-offset-4 decoration-blackcurrant/30'
                          : ''}"
                 on:click={() => (open = false)}
                 aria-current={isActive(link.href, $page.url.pathname) ? 'page' : undefined}
