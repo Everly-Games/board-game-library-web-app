@@ -146,5 +146,5 @@
     </button>
   </form>
 
-  <a href="/signout">Sign out</a>
+  <a href="/signout" data-sveltekit-reload>Sign out</a>
 </section>
