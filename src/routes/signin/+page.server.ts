@@ -10,9 +10,23 @@ function getSafeRedirect(url: URL, fallback = '/') {
   return fallback;
 }
 
-export const load: PageServerLoad = async ({ locals, url }) => {
+export const load: PageServerLoad = async ({ locals, url, setHeaders, cookies }) => {
+  // Prevent caching of signin page to ensure fresh data after logout
+  setHeaders({
+    'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+    'Pragma': 'no-cache',
+    'Expires': '0'
+  });
+
+  // Debug: Check session and cookies
+  const allCookies = cookies.getAll().map(c => c.name);
+  console.log('🔵 [signin/load] Cookies:', allCookies);
+  console.log('🔵 [signin/load] Session exists:', !!locals.session);
+  console.log('🔵 [signin/load] User:', locals.user?.email || 'none');
+
   // If already logged in, send them "home"
   if (locals.session) {
+    console.log('🟡 [signin/load] Already logged in, redirecting home');
     const next = getSafeRedirect(url, '/');
     throw redirect(302, next);
   }
@@ -46,8 +60,21 @@ export const actions: Actions = {
   },
 
   // Google signin (named action: "google")
-  google: async ({ locals, url }) => {
+  google: async ({ locals, url, cookies }) => {
     console.log('🔵 [signin/google] Google action hit');
+    
+    // Debug: Check session and cookies
+    const allCookies = cookies.getAll().map(c => c.name);
+    console.log('🔵 [signin/google] Cookies:', allCookies);
+    console.log('🔵 [signin/google] Session exists:', !!locals.session);
+    console.log('🔵 [signin/google] User:', locals.user?.email || 'none');
+
+    // If already logged in, redirect home instead of starting OAuth
+    if (locals.session) {
+      console.log('🟡 [signin/google] Already logged in, redirecting home');
+      const next = getSafeRedirect(url, '/');
+      throw redirect(302, next);
+    }
 
     // Where do we ultimately want to land? (home by default)
     const next = getSafeRedirect(url, '/');
